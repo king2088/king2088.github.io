@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Tony的前端开发笔记">
+<meta name="keywords" content="JavaScript,flutter,移动端,APP">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tony&#39;s Notes">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;2&#x2F;index.html">
+<meta property="og:site_name" content="Tony&#39;s Notes">
+<meta property="og:description" content="Tony的前端开发笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>Tony's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tony's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Notes for a front-end developer</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/ANGULAR2-%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/ANGULAR2-%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">ANGULAR2+数据更新但视图不更新的解决方法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:32:44 / 修改时间：13:35:22" itemprop="dateCreated datePublished" datetime="2019-12-07T13:32:44+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近项目中总是遇到一些莫名其妙的问题，当然这个项目已经存在已久，之前也有过这样的问题，现在感觉问题总是显得很突出，大部分问题都是由于数据更新后，视图无法及时更新而导致的，由于项目的代码原因，我就不多去深入为什么会发生这个问题了，主要的是说一下解决这个问题的方法。<br>场景<br>如果你在组件中定义了一个变量，当你使用console能将其值打印出来，可是我们能看到的视图中，这个变量并没有任何值或者改动。又或者你在一个点击事件中去改变相关变量的值，让其显示在视图上，但是当你点击事件触发后，变量的值是改变了，但是视图却为更新。这个时候你就可以使用以下几种方法</p>
+<p>1、直接使用ngZong.run()<br>我们可以将某个要发生改变的变量或者方法直接放到ngZong.run()中。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ngZong.run(()&#x3D;&gt;&#123;this.closeNum()&#125;)</span></pre></td></tr></table></figure>
+
+<p>2、ChangeDetectorRef.detectChanges()<br>此方法本人使用的不多，并没有切确的深入了解这个方法，而且我在进行测试中，这个方法对我来说并未产生任何效果，如果你想要尝试一下，建议看一下官方文档<a href="https://angular.io/api/core/ChangeDetectorRef#!#detectChanges-anchor" target="_blank" rel="noopener">https://angular.io/api/core/ChangeDetectorRef#!#detectChanges-anchor</a></p>
+<p>3、直接使用ngDocheck()生命周期<br>我们可以将相关代码直接放到ngDocheck中，即可实现视图强制更新。但是一定要注意ngDocheck特别像setInterval，不论你数据是否发生改变他都会执行，并且任意一个事件都有可能触发它。因此得需要慎用，以防影响到性能</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/JAVASCRIPT%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/JAVASCRIPT%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D/" class="post-title-link" itemprop="url">JAVASCRIPT中的对象拷贝</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:29:20 / 修改时间：13:32:19" itemprop="dateCreated datePublished" datetime="2019-12-07T13:29:20+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>对象拷贝，可能很多人并不是很清楚，而且也使用的不多，简单的说拷贝对象就是直接复制一个数组或者一个对象，听到复制可能大家都蒙了，该如何才能达到复制一个对象或者数组？我们可以将这里的复制理解为是赋值，我们可以将一个数组或者一个对象直接赋值给一个变量，这个过程就可以称为复制（或者对象拷贝），大家一定不要被“复制、拷贝”这样的名词给搞晕了。下面我们来看几个简单的示例</p>
+<h2 id="JavaScript拷贝数组（浅拷贝）"><a href="#JavaScript拷贝数组（浅拷贝）" class="headerlink" title="JavaScript拷贝数组（浅拷贝）"></a>JavaScript拷贝数组（浅拷贝）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arry = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arry1 = arry</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(arry) <span class="comment">//输出[1,2,3]，说明拷贝数组成功</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">arry1[<span class="number">1</span>] = <span class="number">6</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(arry1) <span class="comment">//改变arry1拷贝过来数组中的值，输出[1,6,3]</span></span></pre></td></tr></table></figure>
+<p>这就是一个简单的数组拷贝的过程，其意义在于，当我们需要使用和arry相同数据的时候，并且只需要更改其中的一个值，从而达到另一个效果，那么我们就可以使用这一的方式进行数组拷贝。<br>当然，以上方法主要是属于数组的浅拷贝。</p>
+<h2 id="JavaScript数组深拷贝"><a href="#JavaScript数组深拷贝" class="headerlink" title="JavaScript数组深拷贝"></a>JavaScript数组深拷贝</h2><h3 id="for-循环实现数组的深拷贝"><a href="#for-循环实现数组的深拷贝" class="headerlink" title="for 循环实现数组的深拷贝"></a>for 循环实现数组的深拷贝</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">copyArry</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">let</span> result = [];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     result.push(arr[i])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">   &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">   <span class="keyword">return</span> result;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = copyArry();</span></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/JAVASCRIPT%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/JAVASCRIPT%E4%B8%AD%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/JAVASCRIPT%E4%B8%AD%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">JAVASCRIPT中数组去重的多种方法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:26:50 / 修改时间：13:28:39" itemprop="dateCreated datePublished" datetime="2019-12-07T13:26:50+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>数组去重，简单来说就是一个数组中如果同时存在两个相同的值，但是我们只需要其中一个即可，不需要将两个相同的值都一起展示出来，这个时候就必须得使用到javascript的数组去重方法了，在javascript中并没有专门的方法直接去重的，因此我们得自己来写一个这样的方法。下面我仅介绍其中的容易理解的4种方法，当然还有其他更多的方法，希望大家能够自己去寻找和学习了，因为目前我就仅能理解这3种方法。<br>大概的思路应该是这样的：<br>1）、定义一个变量数组 res 保存结果，遍历需要去重的数组，如果该元素已经存在在 res 中了，则说明是重复的元素，如果没有，则放入 res 中。<br>2）、将原数组中重复元素的最后一个元素放入结果数组中<br>下面我们直接来看代码，代码可以让你一目了然。</p>
+<h2 id="万能的for循环"><a href="#万能的for循环" class="headerlink" title="万能的for循环"></a>万能的for循环</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="string">'1'</span>,<span class="string">'3'</span>,<span class="string">'3'</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uniqueTwo</span>(<span class="params">arr</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">var</span> res = [];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; arr.length; i++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> item = arr[i]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    res.indexOf(item)===<span class="number">-1</span> &amp;&amp; res.push(item)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> res;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> testTwo = uniqueTwo(arr);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'testTwo'</span>,testTwo); <span class="comment">// 返回[1, 2, 3, "1", "3"]</span></span></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/JAVASCRIPT%E4%B8%AD%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%B3%BB%E5%88%97%E4%B9%8BCSS3%E7%94%BB%E4%B8%89%E8%A7%92%E5%8F%8A%E7%94%BB%E5%9C%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%B3%BB%E5%88%97%E4%B9%8BCSS3%E7%94%BB%E4%B8%89%E8%A7%92%E5%8F%8A%E7%94%BB%E5%9C%86/" class="post-title-link" itemprop="url">老生常谈系列之CSS3画三角及画圆</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:24:38 / 修改时间：13:26:08" itemprop="dateCreated datePublished" datetime="2019-12-07T13:24:38+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这是一道前端开发中常常被问到的基础问题，该如何画一个三角形？该如何画一个圆？被问到的时候，可能在你脑海里飘过的就是“我好像在哪里看过，但是记不得了”，我们往往觉得很简单的问题，往往却被面试官问到脸红、紧张。下面就来说说利用css画出各种基本图形的代码。<br>1、画圆<br>画圆，我们可以利用CSS3中的border-radius方法具体使用是将一个四方形设置上等宽等高后，再去设置边框的弧度为宽高的一半</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.circle</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">border-radius</span>: <span class="number">25px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">background</span>: blue;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>2、画三角形：<br>思路是将某两个边框设置为透明，然后设置三角形底边的边框颜色以及高度即可</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%B3%BB%E5%88%97%E4%B9%8BCSS3%E7%94%BB%E4%B8%89%E8%A7%92%E5%8F%8A%E7%94%BB%E5%9C%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%B3%BB%E5%88%97%E4%B9%8BTHIS%E3%80%81CALL%E3%80%81APPLY/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%B3%BB%E5%88%97%E4%B9%8BTHIS%E3%80%81CALL%E3%80%81APPLY/" class="post-title-link" itemprop="url">老生常谈系列之THIS、CALL、APPLY</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:22:16 / 修改时间：13:23:52" itemprop="dateCreated datePublished" datetime="2019-12-07T13:22:16+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在JavaScript中我们经常要使用到this关键字，但是有时候this的指向总是让我们搞不明白，理不清楚。总之刚开始接触的时候直接是一头雾水，当然this指向都没法搞清楚，那么就很难判断出很多代码输出的结果。比如以下代码中，大家可以猜一猜this指向的是谁？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUrl</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">getUrl()</span></pre></td></tr></table></figure>
+<p>以上代码中很简单的一个例子，其实我们打印出来后this指向的是window对象<br>然而这并没有什么卵用，最多就是我们知道了this的指向。由此JavaScript中就出现了call、apply方法，这两个方法主要是用于动态改变this指向的，他们的使用方法一样，只不过是传递的参数不一样罢了。<br>使用方法：<br>如果call或apply的第一参数是null的话， this指向window</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">obj.myFunc();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">myFunc.call(obj,arg);<span class="comment">//以参数的方式进行传递</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">myFunc.apply(obj,[arg1,arg2..]);<span class="comment">//以数组的方式进行传递</span></span></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%B3%BB%E5%88%97%E4%B9%8BTHIS%E3%80%81CALL%E3%80%81APPLY/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/JAVASCRIPT%E7%BC%96%E5%86%99%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/JAVASCRIPT%E7%BC%96%E5%86%99%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">JAVASCRIPT编写属于自己的类型检测函数</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:19:59 / 修改时间：13:21:37" itemprop="dateCreated datePublished" datetime="2019-12-07T13:19:59+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>不要跟我说类型检测不是很简单吗？好像直接使用typeof就可以检测了，这个有什么难度？但是大家都知道使用typeof检测出来的并无法检测出Arry、Date、RegExp、Error、Null等特殊类型，如我们遇到是arry的类型，检测出来的是object类型。因此我们想要得到更加精确的类型，就必须得自己动手写一个函数出来判断下类型</p>
+<h2 id="了解Object-prototype-toString"><a href="#了解Object-prototype-toString" class="headerlink" title="了解Object.prototype.toString"></a>了解Object.prototype.toString</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="literal">null</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call(b) <span class="comment">//[object Null]</span></span></pre></td></tr></table></figure>
+<p>由Object.prototype.toString的方法我们可以知道这个方法可以获得[object Null]，[object Error]等类型。这样我们就可以直接来拼接一个属于我们自己的类型检测函数啦</p>
+<h2 id="类型检测函数type"><a href="#类型检测函数type" class="headerlink" title="类型检测函数type"></a>类型检测函数type</h2><p>大致的思想是：假如我们检测到的是object，那么就使用Object.prototype.toString去检测，否则就使用typeof进行检测</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> typeClass = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">"Boolean Number String Function Array Date RegExp Object Error Null Undefined"</span>.split(<span class="string">' '</span>).map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  typeClass[<span class="string">'[object '</span>+ item +<span class="string">']'</span>] = item.toLowerCase();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">obj</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">var</span> objType = <span class="keyword">typeof</span> obj ===<span class="string">'object'</span> || <span class="keyword">typeof</span> obj ===<span class="string">'function'</span> ? typeClass[<span class="built_in">Object</span>.prototype.toString.call(obj)] || <span class="string">'object'</span> : <span class="keyword">typeof</span> obj;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> objType</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">type(<span class="number">111</span>) <span class="comment">//number</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">type(<span class="string">'111'</span>) <span class="comment">//string</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">type([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) <span class="comment">//array</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">type(<span class="literal">null</span>) <span class="comment">//null</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">type(&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;) <span class="comment">//object</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">type(<span class="keyword">new</span> <span class="built_in">Date</span>()) <span class="comment">//date</span></span></pre></td></tr></table></figure>
+<h2 id="JQ中的type函数"><a href="#JQ中的type函数" class="headerlink" title="JQ中的type函数"></a>JQ中的type函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type: <span class="function"><span class="keyword">function</span>(<span class="params"> obj </span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> ( obj == <span class="literal">null</span> ) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">return</span> obj + <span class="string">""</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"object"</span> || <span class="keyword">typeof</span> obj === <span class="string">"function"</span> ?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">       class2type[ toString.call( obj ) ] || <span class="string">"object"</span> :</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">typeof</span> obj;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>JQ中对IE浏览器做了兼容！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E4%B8%AA%E6%80%A7%E5%8C%96HTML5%E4%B8%AD%E7%9A%84VIDEO%EF%BC%8C%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84HTML5%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E4%B8%AA%E6%80%A7%E5%8C%96HTML5%E4%B8%AD%E7%9A%84VIDEO%EF%BC%8C%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84HTML5%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8/" class="post-title-link" itemprop="url">个性化HTML5中的VIDEO，打造属于自己的HTML5视频播放器</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:15:23 / 修改时间：13:19:44" itemprop="dateCreated datePublished" datetime="2019-12-07T13:15:23+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文使用的都是CSS3以及html5中的video实现的播放器，在PC与手机端都可以完美播放，目前还未实现播放进度条的拖移功能，后续会增加这个功能。<br>demo效果查看地址：<a href="https://king2088.github.io/html5-vPlayer/" target="_blank" rel="noopener">https://king2088.github.io/html5-vPlayer/</a><br>先看效果图：</p>
+<img src="/2019/12/07/%E4%B8%AA%E6%80%A7%E5%8C%96HTML5%E4%B8%AD%E7%9A%84VIDEO%EF%BC%8C%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84HTML5%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8/WX20171112-134847@2x.png" class="" title="个性化播放器">
+<p>首先我们要了解一下html5中的media事件以及属性</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E4%B8%AA%E6%80%A7%E5%8C%96HTML5%E4%B8%AD%E7%9A%84VIDEO%EF%BC%8C%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84HTML5%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E5%8E%9F%E7%94%9FJAVASCRIPT%E6%A8%A1%E6%8B%9F%E4%BA%8B%E4%BB%B6%E7%82%B9%E5%87%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E5%8E%9F%E7%94%9FJAVASCRIPT%E6%A8%A1%E6%8B%9F%E4%BA%8B%E4%BB%B6%E7%82%B9%E5%87%BB/" class="post-title-link" itemprop="url">原生JAVASCRIPT模拟事件点击</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:13:26 / 修改时间：13:14:46" itemprop="dateCreated datePublished" datetime="2019-12-07T13:13:26+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在某些功能上可能我们会使用到模拟用户点击，当然在jQuery中的模拟事件已经很强大了，但是我们再使用其他库或者使用原生JavaScript的时候，不可能使用jQuery的美元号去实现这个功能了，因此只能通过原生JavaScript去实现，下面我们就来看看代码该如何写。<br>原生js中可以通过dispatch方法来模拟用户行为，如点击（click），触屏（touchStart）操作等，我们都可以进行模拟。</p>
+<h2 id="自动触发内置事件"><a href="#自动触发内置事件" class="headerlink" title="自动触发内置事件"></a>自动触发内置事件</h2><p>自动触发事件有两种方法，目前支持IE内核以及Firefox内核浏览器，但是并不支持chrome</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//自动触发内置事件</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">commonTrigger</span>(<span class="params">el, type</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> evt = <span class="built_in">document</span>.createEvent(<span class="string">"MouseEvents"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    evt.initEvent(type, <span class="literal">true</span>, <span class="literal">true</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    el.dispatchEvent(evt);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//自动触发内置事件</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trigger</span>(<span class="params">el, type</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> event = <span class="keyword">new</span> MouseEvent(type, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'view'</span>: <span class="built_in">window</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'bubbles'</span>: <span class="literal">true</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        <span class="string">'cancelable'</span>: <span class="literal">true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    el.dispatchEvent(event);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E5%8E%9F%E7%94%9FJAVASCRIPT%E6%A8%A1%E6%8B%9F%E4%BA%8B%E4%BB%B6%E7%82%B9%E5%87%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E5%9C%A8ELECTRON%E4%B8%AD%E4%BD%BF%E7%94%A8IONIC2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E5%9C%A8ELECTRON%E4%B8%AD%E4%BD%BF%E7%94%A8IONIC2/" class="post-title-link" itemprop="url">在ELECTRON中使用IONIC2</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:07:34 / 修改时间：13:12:48" itemprop="dateCreated datePublished" datetime="2019-12-07T13:07:34+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>electron是atom官方的一个跨平台的桌面应用开发框架，具官方介绍说是“ Build cross platform desktop apps with JavaScript, HTML, and CSS”，也就是说可以直接使用，你最喜欢的html+css+js来开发跨平台的桌面应用程序。如果你之前使用过angular以及react之类的JS框架，那么你就可以使用这些框架来制作一个跨平台的桌面应用。下面我们主要是说一下在ionic2中，我们要如何使用electron与ionic2进行通信！<br>由于electron使用的是chrome的V8引擎，也就是可以理解为一个浏览器，因此我们只需要编写想要的前端代码就可以直接运行在electron中了。建议大家边看electron的doc边做开发。因为我也是刚刚开始接触electron，只不过我只是需要从ionic中传递数据到electron中，让其与其他设备进行交互而已，因此我做的只是一个简单的ionic传递数据到electron，其他的我并不深入。因此大家喜欢研究的朋友可以深入研究下electron。</p>
+<h2 id="安装electron"><a href="#安装electron" class="headerlink" title="安装electron"></a>安装electron</h2><p>安装过程可能并不复杂，但是一定要记住要使用淘宝的npm镜像进行安装，因为我翻墙了也无法安装成功，因此建议大家使用cnpm，这个特别快！<br>在nodejs中键入如下命令即可进行安装<br>npm install electron -g</p>
+<p>如果是linux或者mac请使用root或者sudo权限进行全局安装</p>
+<h2 id="使用electron"><a href="#使用electron" class="headerlink" title="使用electron"></a>使用electron</h2><p>其使用方法很简单，安装完成后直接输入electron就可以看到如下提示：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E5%9C%A8ELECTRON%E4%B8%AD%E4%BD%BF%E7%94%A8IONIC2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/" class="post-title-link" itemprop="url">使用CSS设置打印</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:04:49 / 修改时间：13:06:54" itemprop="dateCreated datePublished" datetime="2019-12-07T13:04:49+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们都知道A4的尺寸是210mm * 297mm,在css中，我们可以直接使用毫米的单位来设置页面的宽高，当然你也可以使用相应的像素进行设置，不过只是通过body或者html来设置宽高的话，可能也会出现问题，而在这里我们需要使用@page来对页面进行定义，@page主要是用于打印的时候定义页面的类型，比如A4，A5，A3等等。下面先来看一下@page的使用方法。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@<span class="keyword">page</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">size</span>: A4;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>另外在设置好@page后，我们可能还会需要设置分页，分页很简单，直接使用page-break-before:always;或者page-break-after:always;就可以设置分页，在网页中是不会显示任何效果的，不过你可以通过浏览器的打印功能进行PDF预览来查看分页是否符合你的要求。<br>不过分页的使用必须的写在@media print中，使用如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> print&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.page-break</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">page-break-before</span>:always;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>.page-break是需要分页的class的元素。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tony</p>
+  <div class="site-description" itemprop="description">Tony的前端开发笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

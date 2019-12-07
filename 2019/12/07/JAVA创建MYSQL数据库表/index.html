@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="使用Java代码编写jsp页面，使之能够对数据库添加数据表，比如现在有一个名为database的数据库，我们想要通过某个页面来添加一张数据库表到database数据库中，该如何进行编写代码？ 一、准备工作1、首先我们需要配置一个可运行Java Web的环境。 2、需要使用Java连接MySQL数据库的驱动jar文件，并且将相应的jar驱动文件放到WEB-INF\lib文件夹下。 二、创建数据库表的">
+<meta name="keywords" content="JAVA,创建MYSQL,数据库表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA创建MYSQL数据库表">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;JAVA%E5%88%9B%E5%BB%BAMYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8&#x2F;index.html">
+<meta property="og:site_name" content="Tony&#39;s Notes">
+<meta property="og:description" content="使用Java代码编写jsp页面，使之能够对数据库添加数据表，比如现在有一个名为database的数据库，我们想要通过某个页面来添加一张数据库表到database数据库中，该如何进行编写代码？ 一、准备工作1、首先我们需要配置一个可运行Java Web的环境。 2、需要使用Java连接MySQL数据库的驱动jar文件，并且将相应的jar驱动文件放到WEB-INF\lib文件夹下。 二、创建数据库表的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-07T01:49:12.667Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/07/JAVA%E5%88%9B%E5%BB%BAMYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JAVA创建MYSQL数据库表 | Tony's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tony's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Notes for a front-end developer</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/JAVA%E5%88%9B%E5%BB%BAMYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JAVA创建MYSQL数据库表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 09:23:38 / 修改时间：09:49:12" itemprop="dateCreated datePublished" datetime="2019-12-07T09:23:38+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>使用Java代码编写jsp页面，使之能够对数据库添加数据表，比如现在有一个名为database的数据库，我们想要通过某个页面来添加一张数据库表到database数据库中，该如何进行编写代码？</p>
+<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><p>1、首先我们需要配置一个可运行Java Web的环境。</p>
+<p>2、需要使用Java连接MySQL数据库的驱动jar文件，并且将相应的jar驱动文件放到WEB-INF\lib文件夹下。</p>
+<h2 id="二、创建数据库表的Java代码"><a href="#二、创建数据库表的Java代码" class="headerlink" title="二、创建数据库表的Java代码"></a>二、创建数据库表的Java代码</h2><p>1、创建一个jsp页面testmysql.jsp，在其顶部第一行代码处打上以下代码（此代码是调用java相应的类，并且让其页面为UTF-8）</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html; charset=utf-8"</span> language=<span class="string">"java"</span> <span class="keyword">import</span>=<span class="string">"java.io.*,java.sql.*"</span>%&gt;</span></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>2、创建数据库表，并且连接数据库，执行创建数据库表</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;% String err;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Connection conn = <span class="keyword">null</span>;<span class="comment">//初始化Connection为null</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//JDBC驱动加载</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">String driverName = <span class="string">"org.gjt.mm.mysql.Driver"</span>; <span class="comment">// MySQL JDBC数据库驱动</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Class.forName(driverName);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">String sql = <span class="string">"CREATE TABLE mysql("</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_boolean BOOL, "</span> <span class="comment">// boolean数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_byte TINYINT, "</span> <span class="comment">// byte数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_short SMALLINT, "</span> <span class="comment">// short数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_int INTEGER, "</span> <span class="comment">// int数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_long BIGINT, "</span> <span class="comment">// long数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_float FLOAT, "</span> <span class="comment">// float数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_double DOUBLE PRECISION, "</span> <span class="comment">// double数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_bigdecimal DECIMAL(13,0), "</span> <span class="comment">// BigDecimal数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_string VARCHAR(254), "</span> <span class="comment">// String数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_date DATE, "</span> <span class="comment">// Date数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_time TIME, "</span> <span class="comment">// Time数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_timestamp TIMESTAMP, "</span> <span class="comment">// Timestamp数据类型</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_asciistream TEXT, "</span> <span class="comment">// AsciiStream数据类型 (&amp;lt; 2^16 bytes)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_binarystream LONGBLOB, "</span> <span class="comment">// BinaryStream数据类型 (&amp;lt; 2^32 bytes)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">+ <span class="string">"mysql_blob BLOB)"</span>; <span class="comment">// Blob数据类型 (&amp;lt; 2^16 bytes)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建数据库连接</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">String servername=request.getParameter(<span class="string">"servername"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">String mydatabase =request.getParameter(<span class="string">"mydatabase"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">String url = <span class="string">"jdbc:mysql://"</span> + servername + <span class="string">"/"</span> + mydatabase; <span class="comment">// 数据库连接地址</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">String serveruser=request.getParameter(<span class="string">"serveruser"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">String serverpassword=request.getParameter(<span class="string">"serverpassword"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">conn = DriverManager.getConnection(url, serveruser, serverpassword);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">Statement stmt = conn.createStatement();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">stmt.executeUpdate(sql);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">out.print(<span class="string">"找不到数据库驱动"</span>+e);<span class="comment">//错误处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">catch</span> (SQLException e) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">out.print(<span class="string">"发生错误,错误信息如下&amp;lt;br/&amp;gt;"</span>+e);<span class="comment">//错误处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">catch</span> (Exception ex) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">conn=<span class="keyword">null</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">err=ex.toString();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">System.out.println(err);<span class="comment">//错误处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">%&gt;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">&lt;% <span class="comment">//测试数据库连接是否正确</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(conn != <span class="keyword">null</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">out.println(<span class="string">"&lt;p align="</span>center<span class="string">"&gt;&lt;font mysqlor=blue&gt;数据库连接成功&lt;/font&gt;&lt;/p&gt;"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">out.println(<span class="string">"&lt;p align="</span>center<span class="string">"&gt;&lt;font mysqlor=red&gt;数据库连接失败&lt;/font&gt;&lt;/p&gt;"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">%&gt;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">&lt;%</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">conn.close();<span class="comment">//关闭数据库连接</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">%&gt;;</span></pre></td></tr></table></figure>
+<h2 id="三、jsp表单提交页面"><a href="#三、jsp表单提交页面" class="headerlink" title="三、jsp表单提交页面"></a>三、jsp表单提交页面</h2><p>创建一个首页index.jsp,代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html; charset=utf-8"</span> language=<span class="string">"java"</span> <span class="keyword">import</span>=<span class="string">"java.io.*"</span>%&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;title&gt;创建数据库连接及数据库表&lt;/title&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&lt;style type=<span class="string">"text/css"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;!--</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">.STYLE1 &#123;font-size: <span class="number">12</span>px&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">.STYLE3 &#123;color: #00CC00&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">.STYLE5 &#123;color: #CCCC33&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">.STYLE7 &#123;color: #99FF33&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">.STYLE9 &#123;color: #99FFFF&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">.STYLE11 &#123;color: #000066&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">.STYLE12 &#123;font-size: 12px; color: #0033FF; &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">.STYLE13 &#123;color: #0033FF&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">--&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&lt;/style&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&lt;/head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">&lt;center&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"testmysql.jsp"</span> method=<span class="string">"post"</span> name=<span class="string">"form"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&lt;table width=<span class="string">"292"</span> border=<span class="string">"0"</span> cellpadding=<span class="string">"4"</span> cellspacing=<span class="string">"4"</span> bordercolor=<span class="string">"#CCFFFF"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  &lt;tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &lt;td colspan="2" bgcolor="#CCFFFF"&gt;&lt;div align="center" class="STYLE12"&gt;创建数据库连接及数据库表&lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    &lt;/tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  &lt;tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    &lt;td width="91" bgcolor="#CCFFFF"&gt;&lt;div align="right" class="STYLE12"&gt;数据库URL&lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    &lt;td width=<span class="string">"177"</span> bgcolor=<span class="string">"#CCFFFF"</span>&gt;&lt;div align=<span class="string">"left"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"STYLE12"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">      &lt;input name=<span class="string">"servername"</span> type=<span class="string">"text"</span> id=<span class="string">"servername"</span> value=<span class="string">"localhost"</span> /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">  &lt;/tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    &lt;tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    &lt;td width="91" bgcolor="#CCFFFF"&gt;&lt;div align="right" class="STYLE12"&gt;数据库名称&lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    &lt;td width=<span class="string">"177"</span> bgcolor=<span class="string">"#CCFFFF"</span>&gt;&lt;div align=<span class="string">"left"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"STYLE12"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">      &lt;input name=<span class="string">"mydatabase"</span> type=<span class="string">"text"</span> /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    &lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">  &lt;/tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">  &lt;tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    &lt;td bgcolor="#CCFFFF"&gt;&lt;div align="right" class="STYLE12"&gt;数据库用户名&lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    &lt;td bgcolor=<span class="string">"#CCFFFF"</span>&gt;&lt;div align=<span class="string">"left"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"STYLE12"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">      &lt;input type=<span class="string">"text"</span> name=<span class="string">"serveruser"</span>  /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    &lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">  &lt;/tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">  &lt;tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">    &lt;td bgcolor="#CCFFFF"&gt;&lt;div align="right" class="STYLE12"&gt;数据库密码&lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">    &lt;td bgcolor=<span class="string">"#CCFFFF"</span>&gt;&lt;div align=<span class="string">"left"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"STYLE12"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">      &lt;input type=<span class="string">"password"</span> name=<span class="string">"serverpassword"</span> /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">    &lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">  &lt;/tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">  &lt;tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">    &lt;td bgcolor="#CCFFFF"&gt;&lt;div align="right"&gt;&lt;span class="STYLE1"&gt;&lt;span class="STYLE3"&gt;&lt;span class="STYLE5"&gt;&lt;span class="STYLE7"&gt;&lt;span class="STYLE9"&gt;&lt;span class="STYLE11"&gt;&lt;span class="STYLE13"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">    &lt;td bgcolor=<span class="string">"#CCFFFF"</span>&gt;&lt;div align=<span class="string">"center"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"STYLE12"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">      &lt;input type=<span class="string">"submit"</span> name=<span class="string">"submit"</span> value=<span class="string">"测试并建立"</span> /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">    &lt;/div&gt;&lt;/td&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">  &lt;/tr&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">&lt;/table&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">&lt;/form&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">&lt;/center&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">&lt;/body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">&lt;/html&gt;</span></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+              <a href="/tags/%E5%88%9B%E5%BB%BAMYSQL/" rel="tag"># 创建MYSQL</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8/" rel="tag"># 数据库表</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/07/%E5%B0%8F%E5%86%85%E5%AD%98VPS%E5%AE%89%E8%A3%85LNMP%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%8C%E4%BD%A0%E5%81%9A%E4%BA%86%E5%90%97%EF%BC%9F/" rel="prev" title="小内存VPS安装LNMP的优化，你做了吗？">
+      <i class="fa fa-chevron-left"></i> 小内存VPS安装LNMP的优化，你做了吗？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/07/%E5%87%A0%E7%A7%8DNGINX%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%9B%97%E9%93%BE%E8%AF%A6%E7%BB%86%E8%AE%BE%E7%BD%AE/" rel="next" title="几种NGINX服务器防盗链详细设置">
+      几种NGINX服务器防盗链详细设置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、准备工作"><span class="nav-number">1.</span> <span class="nav-text">一、准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、创建数据库表的Java代码"><span class="nav-number">2.</span> <span class="nav-text">二、创建数据库表的Java代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、jsp表单提交页面"><span class="nav-number">3.</span> <span class="nav-text">三、jsp表单提交页面</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tony</p>
+  <div class="site-description" itemprop="description">Tony的前端开发笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

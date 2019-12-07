@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="效果GIF动图有3M多，如果没有显示出来，请再等等  看到了吧，自己的一点小创意，搞了个猪头上去。 相关代码本程序中仅使用了vue的ajax框架vue-resource，未使用到vue-router，因此再安装vue-cli的时候，可以略过vue-router，本程序仅有一个组件，即只有一个vue文件，使用了css预处理语言stylus。使用的json数据为本站相关php代码生成的（仅为了演示），">
+<meta name="keywords" content="vue,音乐,播放器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用VUE2制作音乐播放器">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8&#x2F;index.html">
+<meta property="og:site_name" content="Tony&#39;s Notes">
+<meta property="og:description" content="效果GIF动图有3M多，如果没有显示出来，请再等等  看到了吧，自己的一点小创意，搞了个猪头上去。 相关代码本程序中仅使用了vue的ajax框架vue-resource，未使用到vue-router，因此再安装vue-cli的时候，可以略过vue-router，本程序仅有一个组件，即只有一个vue文件，使用了css预处理语言stylus。使用的json数据为本站相关php代码生成的（仅为了演示），">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8&#x2F;vue-player.gif">
+<meta property="og:updated_time" content="2019-12-07T03:28:01.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8&#x2F;vue-player.gif">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>使用VUE2制作音乐播放器 | Tony's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tony's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Notes for a front-end developer</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用VUE2制作音乐播放器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 11:21:26 / 修改时间：11:28:01" itemprop="dateCreated datePublished" datetime="2019-12-07T11:21:26+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>GIF动图有3M多，如果没有显示出来，请再等等</p>
+<img src="/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/vue-player.gif" class="" title="Vue音乐播放器">
+<p>看到了吧，自己的一点小创意，搞了个猪头上去。</p>
+<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><p>本程序中仅使用了vue的ajax框架vue-resource，未使用到vue-router，因此再安装vue-cli的时候，可以略过vue-router，本程序仅有一个组件，即只有一个vue文件，使用了css预处理语言stylus。使用的json数据为本站相关php代码生成的（仅为了演示），如果你是在本地搭建环境，json也可以写在本地。</p>
+<p>本demo已经使用cordova制作成了安卓的apk文件，如需体验，请点击此处下载<br>源码已经提交到github（记得给我加星哦）：<a href="https://github.com/king2088/vue-tplayer" target="_blank" rel="noopener">https://github.com/king2088/vue-tplayer</a><br>演示地址：<a href="http://www.egtch.com/t_works/tplayer/" target="_blank" rel="noopener">http://www.egtch.com/t_works/tplayer/</a></p>
+<h3 id="生成json的php如下"><a href="#生成json的php如下" class="headerlink" title="生成json的php如下"></a>生成json的php如下</h3><p>代码非常简单，就是定义一串json数据，然后在展现出来：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    header(<span class="string">"Access-Control-Allow-Origin: *"</span>);<span class="comment">//设置跨域允许</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    header(<span class="string">'Content-Type: text/html; charset=utf-8'</span>); <span class="comment">//设置页面编码</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    header(<span class="string">'Content-type: application/json'</span>);<span class="comment">//设置页面为json格式的文档</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    $data =<span class="string">' &#123;"music":[</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "id":"1",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "name": "Apologize",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "singer":"Timbaland Remix",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "img":"http://www.egtch.com/t_works/Vuedata/apologize.jpg",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "url": "http://www.egtch.com/t_works/Vuedata/Apologize (Timbaland Remix).mp3"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "id":"2",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "name": "Hero",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "singer":"Enrique Iglesias",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "img":"http://www.egtch.com/t_works/Vuedata/hero.jpg",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "url": "http://www.egtch.com/t_works/Vuedata/Hero.mp3"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "id":"3",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "name": "I AM YOU",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "singer":"Kim Taylor",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "img":"http://www.egtch.com/t_works/Vuedata/iamyou.jpg",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "url": "http://www.egtch.com/t_works/Vuedata/I Am You.mp3"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="string">      ]&#125;'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">echo</span> $data</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="meta">?&gt;</span></span></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="app-vue代码"><a href="#app-vue代码" class="headerlink" title="app.vue代码"></a>app.vue代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"list"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;music.name&#125;&#125;-&#123;&#123;music.singer&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">a</span> @<span class="attr">click</span>=<span class="string">"isShow(),isBg()"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./assets/player/list.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"music"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"text"</span>&gt;&#123;&#123;music.name&#125;&#125;&lt;span&gt;&#123;&#123;music.singer&#125;&#125;&lt;<span class="regexp">/span&gt;&lt;/</span>div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"img"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"pic"</span> <span class="attr">:src</span>=<span class="string">"music.img"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">    &lt;div class="player"&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">      &lt;div class="ico"&gt;&lt;img src="./</span>assets/player/backward.png<span class="string">" id="</span>pre<span class="string">" @click="</span>isPre<span class="string">"&gt;&lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="string">      &lt;div class="</span>ico<span class="string">"&gt;&lt;img src="</span>./assets/player/play.png<span class="string">" id="</span>play<span class="string">" @click="</span>isPlay<span class="string">"&gt;&lt;img src="</span>./assets/player/pause.png<span class="string">" id="</span>stop<span class="string">" @click="</span>isStop<span class="string">"&gt;&lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="string">      &lt;div class="</span>ico<span class="string">"&gt;&lt;img src="</span>./assets/player/forward.png<span class="string">" id="</span>next<span class="string">" @click="</span>isNext<span class="string">"&gt;&lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &lt;audio id="</span>audio<span class="string">" :src="</span>music.url<span class="string">" preload autoplay @ended="</span>isNext<span class="string">"&gt;&lt;/audio&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &lt;transition name="</span>fade<span class="string">"&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">      &lt;div class="</span>songList<span class="string">" v-show="</span>showList<span class="string">"&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="string">         &lt;div class="</span>items<span class="string">"&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="string">           &lt;div class="</span>title<span class="string">"&gt;歌曲列表 &lt;span id="</span>close<span class="string">" @click="</span>isClose<span class="string">"&gt;&lt;img src="</span>./assets/player/close.png<span class="string">"&gt;&lt;/span&gt;&lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="string">           &lt;div class="</span>item<span class="string">" v-for="</span>(item, index) <span class="keyword">in</span> MList<span class="string">"&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="string">             &lt;a :id="</span><span class="string">'item-'</span>+index<span class="string">" @click="</span>clickSong(index)<span class="string">"&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="string">               &lt;span class="</span>l<span class="string">"&gt;&#123;&#123;MList[index].name&#125;&#125;&lt;/span&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="string">               &lt;span class="</span>r<span class="string">"&gt;&#123;&#123;MList[index].singer&#125;&#125;&lt;/span&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="string">               &lt;div class="</span>clear<span class="string">"&gt;&lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="string">             &lt;/a&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="string">           &lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="string">         &lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &lt;/transition&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="string">  &lt;/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;/template&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;script&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="string">export default &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="string">    name: 'app',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="string">    data()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="string">        return&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"><span class="string">         apiUrl: 'http://www.egtch.com/t_works/Vuedata/data.php',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="string">             id: 0,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="string">             bg:'',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"><span class="string">          music: '',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line"><span class="string">          MList:'',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line"><span class="string">       showList: false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"><span class="string">    created()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line"><span class="string">        this.getMusic(this.id)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line"><span class="string">        this.isBg()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line"><span class="string">    watch:&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line"><span class="string">        'id':'getMusic',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line"><span class="string">        'bg':'isBg'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"><span class="string">    &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line"><span class="string">    methods:&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line"><span class="string">        getMusic(p)&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line"><span class="string">            this.$http.get(this.apiUrl).then(response =&gt; &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line"><span class="string">                // get body data</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line"><span class="string">                response = response.body</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line"><span class="string">                this.MList = response.music</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line"><span class="string">                /*alert(this.MList)*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line"><span class="string">                if(p &lt; response.music.length) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line"><span class="string">                   this.music = response.music[p]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line"><span class="string">               &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line"><span class="string">               if(p &gt; response.music.length)&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line"><span class="string">                    this.id = 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line"><span class="string">                    this.music = response.music[this.id]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line"><span class="string">                &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line"><span class="string">                if(p &lt; 0)&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line"><span class="string">                   this.id = response.music.length</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line"><span class="string">                   this.music = response.music[this.id]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line"><span class="string">               &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line"><span class="string">           &#125;)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line"><span class="string">       /*查看当前audio是否正在播放，如果停止，那么播放下一曲*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line"><span class="string">       isPlay()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line"><span class="string">         document.getElementById("</span>audio<span class="string">").play();</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line"><span class="string">         document.getElementById("</span>play<span class="string">").style.display="</span>none<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line"><span class="string">         document.getElementById("</span>stop<span class="string">").style.display="</span>inline<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line"><span class="string">         document.getElementById("</span>pic<span class="string">").style.animationPlayState="</span>running<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line"><span class="string">         return false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line"><span class="string">       isStop()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">82</span></pre></td><td class="code"><pre><span class="line"><span class="string">          document.getElementById("</span>audio<span class="string">").pause();</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">83</span></pre></td><td class="code"><pre><span class="line"><span class="string">          document.getElementById("</span>stop<span class="string">").style.display="</span>none<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">84</span></pre></td><td class="code"><pre><span class="line"><span class="string">          document.getElementById("</span>play<span class="string">").style.display="</span>inline<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">85</span></pre></td><td class="code"><pre><span class="line"><span class="string">          document.getElementById("</span>pic<span class="string">").style.animationPlayState="</span>paused<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">86</span></pre></td><td class="code"><pre><span class="line"><span class="string">          return false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">87</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">88</span></pre></td><td class="code"><pre><span class="line"><span class="string">       isNext()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">89</span></pre></td><td class="code"><pre><span class="line"><span class="string">           this.id++;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">90</span></pre></td><td class="code"><pre><span class="line"><span class="string">           /*为了防止停止状态下，点击下一曲的时候，停止图标不出现，并且专辑图片不转动*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">91</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>play<span class="string">").style.display="</span>none<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">92</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>stop<span class="string">").style.display="</span>inline<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">93</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>item-<span class="string">"+this.bg).style.background='none';</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">94</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>pic<span class="string">").style.animationPlayState="</span>running<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">95</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">96</span></pre></td><td class="code"><pre><span class="line"><span class="string">       isPre()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">97</span></pre></td><td class="code"><pre><span class="line"><span class="string">           this.id--;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">98</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>play<span class="string">").style.display="</span>none<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">99</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>stop<span class="string">").style.display="</span>inline<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">100</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>pic<span class="string">").style.animationPlayState="</span>running<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">101</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">102</span></pre></td><td class="code"><pre><span class="line"><span class="string">       isShow()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">103</span></pre></td><td class="code"><pre><span class="line"><span class="string">           this.showList = true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">104</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">105</span></pre></td><td class="code"><pre><span class="line"><span class="string">       isClose()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">106</span></pre></td><td class="code"><pre><span class="line"><span class="string">           this.showList = false</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">107</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">108</span></pre></td><td class="code"><pre><span class="line"><span class="string">       isBg()&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">109</span></pre></td><td class="code"><pre><span class="line"><span class="string">           this.bg = this.id</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">110</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>item-<span class="string">"+this.bg).style.background='#F2F2F2';</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">111</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">112</span></pre></td><td class="code"><pre><span class="line"><span class="string">       /*点击列表中的歌曲，并播放*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">113</span></pre></td><td class="code"><pre><span class="line"><span class="string">       clickSong(i)&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">114</span></pre></td><td class="code"><pre><span class="line"><span class="string">           this.id = i;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">115</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>item-<span class="string">"+this.bg).style.background='none';</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">116</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>play<span class="string">").style.display="</span>none<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">117</span></pre></td><td class="code"><pre><span class="line"><span class="string">           document.getElementById("</span>pic<span class="string">").style.animationPlayState="</span>running<span class="string">";</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">118</span></pre></td><td class="code"><pre><span class="line"><span class="string">           this.isBg()</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">119</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">120</span></pre></td><td class="code"><pre><span class="line"><span class="string">   &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">121</span></pre></td><td class="code"><pre><span class="line"><span class="string">&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">122</span></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;/script&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">123</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">124</span></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;style lang="</span>stylus<span class="string">" rel="</span>stylesheet/stylus<span class="string">"&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">125</span></pre></td><td class="code"><pre><span class="line"><span class="string">html,body</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">126</span></pre></td><td class="code"><pre><span class="line"><span class="string">  height 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">127</span></pre></td><td class="code"><pre><span class="line"><span class="string">  width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">128</span></pre></td><td class="code"><pre><span class="line"><span class="string">  max-width 600px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">129</span></pre></td><td class="code"><pre><span class="line"><span class="string">  margin 0 auto</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">130</span></pre></td><td class="code"><pre><span class="line"><span class="string">  .clear</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">131</span></pre></td><td class="code"><pre><span class="line"><span class="string">    clear both</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">132</span></pre></td><td class="code"><pre><span class="line"><span class="string">  #app</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">133</span></pre></td><td class="code"><pre><span class="line"><span class="string">    font-family 'Microsoft YaHei','\5FAE\8F6F\96C5\9ED1'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">134</span></pre></td><td class="code"><pre><span class="line"><span class="string">    font-weight lighter</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">135</span></pre></td><td class="code"><pre><span class="line"><span class="string">    -webkit-font-smoothing antialiased</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">136</span></pre></td><td class="code"><pre><span class="line"><span class="string">    -moz-osx-font-smoothing grayscale</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">137</span></pre></td><td class="code"><pre><span class="line"><span class="string">    color #2c3e50</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">138</span></pre></td><td class="code"><pre><span class="line"><span class="string">    height 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">139</span></pre></td><td class="code"><pre><span class="line"><span class="string">    width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">140</span></pre></td><td class="code"><pre><span class="line"><span class="string">    overflow hidden</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">141</span></pre></td><td class="code"><pre><span class="line"><span class="string">    .list</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">142</span></pre></td><td class="code"><pre><span class="line"><span class="string">      width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">143</span></pre></td><td class="code"><pre><span class="line"><span class="string">      height 60px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">144</span></pre></td><td class="code"><pre><span class="line"><span class="string">      line-height 60px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">145</span></pre></td><td class="code"><pre><span class="line"><span class="string">      background #F2F2F2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">146</span></pre></td><td class="code"><pre><span class="line"><span class="string">      border-bottom 1px #333 solid</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">147</span></pre></td><td class="code"><pre><span class="line"><span class="string">      span</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">148</span></pre></td><td class="code"><pre><span class="line"><span class="string">        padding-left 20px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">149</span></pre></td><td class="code"><pre><span class="line"><span class="string">        display inline-block</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">150</span></pre></td><td class="code"><pre><span class="line"><span class="string">        color darkblue</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">151</span></pre></td><td class="code"><pre><span class="line"><span class="string">      &amp; &gt; a</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">152</span></pre></td><td class="code"><pre><span class="line"><span class="string">       display block</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">153</span></pre></td><td class="code"><pre><span class="line"><span class="string">       float right</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">154</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &amp; &gt; img</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">155</span></pre></td><td class="code"><pre><span class="line"><span class="string">         margin-top 8px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">156</span></pre></td><td class="code"><pre><span class="line"><span class="string">         width 40px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">157</span></pre></td><td class="code"><pre><span class="line"><span class="string">   .player</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">158</span></pre></td><td class="code"><pre><span class="line"><span class="string">     width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">159</span></pre></td><td class="code"><pre><span class="line"><span class="string">     max-width 600px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">160</span></pre></td><td class="code"><pre><span class="line"><span class="string">     height 30%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">161</span></pre></td><td class="code"><pre><span class="line"><span class="string">     opacity .8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">162</span></pre></td><td class="code"><pre><span class="line"><span class="string">     position fixed</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">163</span></pre></td><td class="code"><pre><span class="line"><span class="string">     background #F2F2F2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">164</span></pre></td><td class="code"><pre><span class="line"><span class="string">     border-top 3px #000 solid</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">165</span></pre></td><td class="code"><pre><span class="line"><span class="string">     border-bottom 10px brown solid</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">166</span></pre></td><td class="code"><pre><span class="line"><span class="string">     bottom 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">167</span></pre></td><td class="code"><pre><span class="line"><span class="string">     font-size 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">168</span></pre></td><td class="code"><pre><span class="line"><span class="string">     border-top-left-radius 50%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">169</span></pre></td><td class="code"><pre><span class="line"><span class="string">     border-top-right-radius 50%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">170</span></pre></td><td class="code"><pre><span class="line"><span class="string">     text-align center</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">171</span></pre></td><td class="code"><pre><span class="line"><span class="string">     display flex</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">172</span></pre></td><td class="code"><pre><span class="line"><span class="string">     .ico</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">173</span></pre></td><td class="code"><pre><span class="line"><span class="string">       flex 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">174</span></pre></td><td class="code"><pre><span class="line"><span class="string">       padding-top 50px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">175</span></pre></td><td class="code"><pre><span class="line"><span class="string">       text-align center</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">176</span></pre></td><td class="code"><pre><span class="line"><span class="string">       #play</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">177</span></pre></td><td class="code"><pre><span class="line"><span class="string">         width 60%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">178</span></pre></td><td class="code"><pre><span class="line"><span class="string">         max-width 64px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">179</span></pre></td><td class="code"><pre><span class="line"><span class="string">         margin-top 35px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">180</span></pre></td><td class="code"><pre><span class="line"><span class="string">         display none</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">181</span></pre></td><td class="code"><pre><span class="line"><span class="string">       #stop</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">182</span></pre></td><td class="code"><pre><span class="line"><span class="string">         margin-top 35px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">183</span></pre></td><td class="code"><pre><span class="line"><span class="string">         width 60%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">184</span></pre></td><td class="code"><pre><span class="line"><span class="string">         max-width 64px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">185</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &amp; &gt; img</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">186</span></pre></td><td class="code"><pre><span class="line"><span class="string">         border 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">187</span></pre></td><td class="code"><pre><span class="line"><span class="string">         width 32px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">188</span></pre></td><td class="code"><pre><span class="line"><span class="string">         vertical-align middle</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">189</span></pre></td><td class="code"><pre><span class="line"><span class="string">   .music</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">190</span></pre></td><td class="code"><pre><span class="line"><span class="string">     width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">191</span></pre></td><td class="code"><pre><span class="line"><span class="string">     height 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">192</span></pre></td><td class="code"><pre><span class="line"><span class="string">     background url("</span>./assets/player/bg.jpg<span class="string">")</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">193</span></pre></td><td class="code"><pre><span class="line"><span class="string">     position relative</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">194</span></pre></td><td class="code"><pre><span class="line"><span class="string">     top 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">195</span></pre></td><td class="code"><pre><span class="line"><span class="string">     left 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">196</span></pre></td><td class="code"><pre><span class="line"><span class="string">     .text</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">197</span></pre></td><td class="code"><pre><span class="line"><span class="string">       width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">198</span></pre></td><td class="code"><pre><span class="line"><span class="string">       text-align center</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">199</span></pre></td><td class="code"><pre><span class="line"><span class="string">       padding-top 5%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">200</span></pre></td><td class="code"><pre><span class="line"><span class="string">       font-size 30px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">201</span></pre></td><td class="code"><pre><span class="line"><span class="string">       span</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">202</span></pre></td><td class="code"><pre><span class="line"><span class="string">         font-size 14px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">203</span></pre></td><td class="code"><pre><span class="line"><span class="string">         display block</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">204</span></pre></td><td class="code"><pre><span class="line"><span class="string">         line-height 2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">205</span></pre></td><td class="code"><pre><span class="line"><span class="string">     .img</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">206</span></pre></td><td class="code"><pre><span class="line"><span class="string">       width 200px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">207</span></pre></td><td class="code"><pre><span class="line"><span class="string">       height 200px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">208</span></pre></td><td class="code"><pre><span class="line"><span class="string">       border-radius 50%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">209</span></pre></td><td class="code"><pre><span class="line"><span class="string">       background #333</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">210</span></pre></td><td class="code"><pre><span class="line"><span class="string">       margin 0 auto</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">211</span></pre></td><td class="code"><pre><span class="line"><span class="string">       position absolute</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">212</span></pre></td><td class="code"><pre><span class="line"><span class="string">       outline none</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">213</span></pre></td><td class="code"><pre><span class="line"><span class="string">       bottom 46%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">214</span></pre></td><td class="code"><pre><span class="line"><span class="string">       left 50%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">215</span></pre></td><td class="code"><pre><span class="line"><span class="string">       transform translateX(-100px)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">216</span></pre></td><td class="code"><pre><span class="line"><span class="string">       &amp; &gt; img</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">217</span></pre></td><td class="code"><pre><span class="line"><span class="string">         width 90%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">218</span></pre></td><td class="code"><pre><span class="line"><span class="string">         height 90%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">219</span></pre></td><td class="code"><pre><span class="line"><span class="string">         padding 5%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">220</span></pre></td><td class="code"><pre><span class="line"><span class="string">         border-radius 50%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">221</span></pre></td><td class="code"><pre><span class="line"><span class="string">         animation: rotation 10s linear infinite;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">222</span></pre></td><td class="code"><pre><span class="line"><span class="string">          -moz-animation: rotation 10s linear infinite;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">223</span></pre></td><td class="code"><pre><span class="line"><span class="string">          -webkit-animation: rotation 10s linear infinite;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">224</span></pre></td><td class="code"><pre><span class="line"><span class="string">          -o-animation: rotation 10s linear infinite;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">225</span></pre></td><td class="code"><pre><span class="line"><span class="string">    .songList</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">226</span></pre></td><td class="code"><pre><span class="line"><span class="string">      position: fixed;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">227</span></pre></td><td class="code"><pre><span class="line"><span class="string">      top: 0;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">228</span></pre></td><td class="code"><pre><span class="line"><span class="string">      z-index: 100;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">229</span></pre></td><td class="code"><pre><span class="line"><span class="string">      width: 100%;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">230</span></pre></td><td class="code"><pre><span class="line"><span class="string">      max-width 600px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">231</span></pre></td><td class="code"><pre><span class="line"><span class="string">      margin 0 auto</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">232</span></pre></td><td class="code"><pre><span class="line"><span class="string">      height: 100%;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">233</span></pre></td><td class="code"><pre><span class="line"><span class="string">      overflow: auto;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">234</span></pre></td><td class="code"><pre><span class="line"><span class="string">      transition: all .5s;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">235</span></pre></td><td class="code"><pre><span class="line"><span class="string">      background: rgba(7, 17, 27, .4);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">236</span></pre></td><td class="code"><pre><span class="line"><span class="string">      backdrop-filter: blur(10px); /*ios 模糊背景*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">237</span></pre></td><td class="code"><pre><span class="line"><span class="string">      .items</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">238</span></pre></td><td class="code"><pre><span class="line"><span class="string">        background #ffffff</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">239</span></pre></td><td class="code"><pre><span class="line"><span class="string">        width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">240</span></pre></td><td class="code"><pre><span class="line"><span class="string">        height 55%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">241</span></pre></td><td class="code"><pre><span class="line"><span class="string">        margin 0 auto</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">242</span></pre></td><td class="code"><pre><span class="line"><span class="string">        padding 60px 0 0 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">243</span></pre></td><td class="code"><pre><span class="line"><span class="string">        overflow auto</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">244</span></pre></td><td class="code"><pre><span class="line"><span class="string">        border-bottom 2px #000 solid</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">245</span></pre></td><td class="code"><pre><span class="line"><span class="string">        .title</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">246</span></pre></td><td class="code"><pre><span class="line"><span class="string">          width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">247</span></pre></td><td class="code"><pre><span class="line"><span class="string">          max-width 600px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">248</span></pre></td><td class="code"><pre><span class="line"><span class="string">          height 50px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">249</span></pre></td><td class="code"><pre><span class="line"><span class="string">          line-height 50px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">250</span></pre></td><td class="code"><pre><span class="line"><span class="string">          background #FFF</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">251</span></pre></td><td class="code"><pre><span class="line"><span class="string">          border-bottom 1px #DDD solid</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">252</span></pre></td><td class="code"><pre><span class="line"><span class="string">          text-align center</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">253</span></pre></td><td class="code"><pre><span class="line"><span class="string">          padding-top 10px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">254</span></pre></td><td class="code"><pre><span class="line"><span class="string">          font-size 18px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">255</span></pre></td><td class="code"><pre><span class="line"><span class="string">          position fixed</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">256</span></pre></td><td class="code"><pre><span class="line"><span class="string">          top 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">257</span></pre></td><td class="code"><pre><span class="line"><span class="string">          #close</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">258</span></pre></td><td class="code"><pre><span class="line"><span class="string">            float right</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">259</span></pre></td><td class="code"><pre><span class="line"><span class="string">            width 40px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">260</span></pre></td><td class="code"><pre><span class="line"><span class="string">            &amp; &gt; img</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">261</span></pre></td><td class="code"><pre><span class="line"><span class="string">             width 40px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">262</span></pre></td><td class="code"><pre><span class="line"><span class="string">       .item</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">263</span></pre></td><td class="code"><pre><span class="line"><span class="string">         width 100%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">264</span></pre></td><td class="code"><pre><span class="line"><span class="string">         margin 0 auto</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">265</span></pre></td><td class="code"><pre><span class="line"><span class="string">         border-top 1px #EEE solid</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">266</span></pre></td><td class="code"><pre><span class="line"><span class="string">         line-height 2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">267</span></pre></td><td class="code"><pre><span class="line"><span class="string">         &amp; &gt; a</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">268</span></pre></td><td class="code"><pre><span class="line"><span class="string">           color black</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">269</span></pre></td><td class="code"><pre><span class="line"><span class="string">           padding 8px 5%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">270</span></pre></td><td class="code"><pre><span class="line"><span class="string">           display block</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">271</span></pre></td><td class="code"><pre><span class="line"><span class="string">           width 90%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">272</span></pre></td><td class="code"><pre><span class="line"><span class="string">           &amp; &gt; span</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">273</span></pre></td><td class="code"><pre><span class="line"><span class="string">             display inline-block</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">274</span></pre></td><td class="code"><pre><span class="line"><span class="string">             width 50%</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">275</span></pre></td><td class="code"><pre><span class="line"><span class="string">           .l</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">276</span></pre></td><td class="code"><pre><span class="line"><span class="string">             float left</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">277</span></pre></td><td class="code"><pre><span class="line"><span class="string">             font-size 16px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">278</span></pre></td><td class="code"><pre><span class="line"><span class="string">           .r</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">279</span></pre></td><td class="code"><pre><span class="line"><span class="string">             float right</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">280</span></pre></td><td class="code"><pre><span class="line"><span class="string">             text-align right</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">281</span></pre></td><td class="code"><pre><span class="line"><span class="string">             font-size 12px</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">282</span></pre></td><td class="code"><pre><span class="line"><span class="string">             color #CCC</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">283</span></pre></td><td class="code"><pre><span class="line"><span class="string"> @-webkit-keyframes rotation</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">284</span></pre></td><td class="code"><pre><span class="line"><span class="string">   from</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">285</span></pre></td><td class="code"><pre><span class="line"><span class="string">     transform rotate(0deg)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">286</span></pre></td><td class="code"><pre><span class="line"><span class="string">   to</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">287</span></pre></td><td class="code"><pre><span class="line"><span class="string">     -webkit-transform rotate(360deg)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">288</span></pre></td><td class="code"><pre><span class="line"><span class="string"> .fade-enter-active</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">289</span></pre></td><td class="code"><pre><span class="line"><span class="string">   transition all .3s ease</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">290</span></pre></td><td class="code"><pre><span class="line"><span class="string"> .fade-leave-active</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">291</span></pre></td><td class="code"><pre><span class="line"><span class="string">   transition all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">292</span></pre></td><td class="code"><pre><span class="line"><span class="string"> .fade-enter, .fade-leave-active</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">293</span></pre></td><td class="code"><pre><span class="line"><span class="string">   transform translateY(-20px)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">294</span></pre></td><td class="code"><pre><span class="line"><span class="string">   opacity 0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">295</span></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;/style&gt;</span></span></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+              <a href="/tags/%E9%9F%B3%E4%B9%90/" rel="tag"># 音乐</a>
+              <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" rel="tag"># 播放器</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/" rel="prev" title="如何让MD5加密更加安全？">
+      <i class="fa fa-chevron-left"></i> 如何让MD5加密更加安全？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/07/CSS3%E7%BE%8E%E5%8C%96%E8%A1%A8%E5%8D%95/" rel="next" title="CSS3美化表单">
+      CSS3美化表单 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">1.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关代码"><span class="nav-number">2.</span> <span class="nav-text">相关代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成json的php如下"><span class="nav-number">2.1.</span> <span class="nav-text">生成json的php如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-vue代码"><span class="nav-number">2.2.</span> <span class="nav-text">app.vue代码</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tony</p>
+  <div class="site-description" itemprop="description">Tony的前端开发笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

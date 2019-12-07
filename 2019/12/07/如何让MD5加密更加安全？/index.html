@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="什么是MD5MD5即Message-Digest Algorithm 5（信息-摘要算法5），用于确保信息传输完整一致。是计算机广泛使用的杂凑算法之一（又译摘要算法、哈希算法），主流编程语言普遍已有MD5实现。将数据（如汉字）运算为另一固定长度值，是杂凑算法的基础原理，MD5的前身有MD2、MD3和MD4。MD5算法具有以下特点：1、压缩性：任意长度的数据，算出的MD5值长度都是固定的。2、容易计">
+<meta name="keywords" content="Java,base64,Md5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何让MD5加密更加安全？">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F&#x2F;index.html">
+<meta property="og:site_name" content="Tony&#39;s Notes">
+<meta property="og:description" content="什么是MD5MD5即Message-Digest Algorithm 5（信息-摘要算法5），用于确保信息传输完整一致。是计算机广泛使用的杂凑算法之一（又译摘要算法、哈希算法），主流编程语言普遍已有MD5实现。将数据（如汉字）运算为另一固定长度值，是杂凑算法的基础原理，MD5的前身有MD2、MD3和MD4。MD5算法具有以下特点：1、压缩性：任意长度的数据，算出的MD5值长度都是固定的。2、容易计">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F&#x2F;20161128210129.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F&#x2F;20161128210959.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F&#x2F;20161128211030.png">
+<meta property="og:updated_time" content="2019-12-07T03:16:30.171Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F&#x2F;20161128210129.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>如何让MD5加密更加安全？ | Tony's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tony's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Notes for a front-end developer</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何让MD5加密更加安全？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 11:06:12 / 修改时间：11:16:30" itemprop="dateCreated datePublished" datetime="2019-12-07T11:06:12+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="什么是MD5"><a href="#什么是MD5" class="headerlink" title="什么是MD5"></a>什么是MD5</h2><p>MD5即Message-Digest Algorithm 5（信息-摘要算法5），用于确保信息传输完整一致。是计算机广泛使用的杂凑算法之一（又译摘要算法、哈希算法），主流编程语言普遍已有MD5实现。将数据（如汉字）运算为另一固定长度值，是杂凑算法的基础原理，MD5的前身有MD2、MD3和MD4。<br>MD5算法具有以下特点：<br>1、压缩性：任意长度的数据，算出的MD5值长度都是固定的。<br>2、容易计算：从原数据计算出MD5值很容易。<br>3、抗修改性：对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。<br>4、强抗碰撞：已知原数据和其MD5值，想找到一个具有相同MD5值的数据（即伪造数据）是非常困难的。</p>
+<h2 id="MD5如此完美"><a href="#MD5如此完美" class="headerlink" title="MD5如此完美"></a>MD5如此完美</h2><p>虽然上面把MD5说得这么完美，而且MD5加密是不可逆加密、单向加密（就是说MD5加密后，是无法再通过相关的破解方法破解出明文密码的），但是如果真要破解MD5那也是一件很容易的事情，目前很多网站都提供相关的碰撞解密MD5的功能，因此，简单的字符串MD5加密，很容易就会被破解。那么MD5还能使用吗？肯定是可以使用的，但是必须使用混淆的方法来对加密的数据进行混淆加密。在java开发中经常都会使用混淆加密来加密字符串。如果混淆的字符串被别人发现了，那样也照样是不安全的。</p>
+<h2 id="如何让MD5加密更为安全"><a href="#如何让MD5加密更为安全" class="headerlink" title="如何让MD5加密更为安全"></a>如何让MD5加密更为安全</h2><p>比如说网站用户密码加密，一般的肯定会想到，直接使用MD5(用户名+密码+”字符串”)的方式进行加密，以增加破解难度。当然这种方法很不错，确实能够保证数据的安全，但是也说不准，假如别人破解了你2个MD5密码的话，那么就会知道，你的加密模式。<br>因此，我个人建议是使用SHA1+MD5混合加密模式，或者MD5+base64的方式，使用这样的方式后，我们再对最终加密结果进行相应的替换即可得到一个很难破解的密码了。<br>下面我以java中MD5+base64的方式，编写了一个实例，大家可以学习下这种思路。</p>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.md5.salt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Md5Salt</span> </span>&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">/*MD5加密*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getMD5</span><span class="params">(<span class="keyword">byte</span>[] source)</span> </span>&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        String s = <span class="keyword">null</span>;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">char</span> hexDigits[] = &#123; <span class="string">'0'</span>,<span class="string">'a'</span>,<span class="string">'9'</span>,<span class="string">'J'</span>,<span class="string">'4'</span>,<span class="string">'c'</span>,<span class="string">'7'</span>,<span class="string">'W'</span>,<span class="string">'2'</span>,<span class="string">'v'</span>, <span class="string">'R'</span>,<span class="string">'3'</span>,<span class="string">'h'</span>,<span class="string">'7'</span>,<span class="string">'I'</span>,<span class="string">'5'</span> &#125;;<span class="comment">// 用来将字节转换成16进制表示的字符  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">try</span> &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            java.security.MessageDigest md = java.security.MessageDigest.getInstance(<span class="string">"MD5"</span>);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            md.update(source);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">byte</span> tmp[] = md.digest();<span class="comment">// MD5 的计算结果是一个 128 位的长整数，  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">// 用字节表示就是 16 个字节  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">char</span> str[] = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">16</span> * <span class="number">2</span>];<span class="comment">// 每个字节用 16 进制表示的话，使用两个字符， 所以表示成 16  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">// 进制需要 32 个字符  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">int</span> k = <span class="number">0</span>;<span class="comment">// 表示转换结果中对应的字符位置  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">16</span>; i++) &#123;<span class="comment">// 从第一个字节开始，对 MD5 的每一个字节// 转换成 16  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">                <span class="comment">// 进制字符的转换  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">byte</span> byte0 = tmp[i];<span class="comment">// 取第 i 个字节  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">                str[k++] = hexDigits[byte0 &gt;&gt;&gt; <span class="number">4</span> &amp; <span class="number">0xf</span>];<span class="comment">// 取字节中高 4 位的数字转换,// &gt;&gt;&gt;  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">                <span class="comment">// 为逻辑右移，将符号位一起右移  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">                str[k++] = hexDigits[byte0 &amp; <span class="number">0xf</span>];<span class="comment">// 取字节中低 4 位的数字转换  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">            &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">            s = <span class="keyword">new</span> String(str);<span class="comment">// 换后的结果转换为字符串  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">// TODO Auto-generated catch block  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">//e.printStackTrace();</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">            System.out.println(e);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> s;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">/*Base64编码*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encodeBase64</span><span class="params">(<span class="keyword">byte</span>[]input)</span> <span class="keyword">throws</span> Exception</span>&#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">        Class clazz=Class.forName(<span class="string">"com.sun.org.apache.xerces.internal.impl.dv.util.Base64"</span>);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        Method mainMethod= clazz.getMethod(<span class="string">"encode"</span>, <span class="keyword">byte</span>[]<span class="class">.<span class="keyword">class</span>)</span>;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">        mainMethod.setAccessible(<span class="keyword">true</span>);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">         Object retObj=mainMethod.invoke(<span class="keyword">null</span>, <span class="keyword">new</span> Object[]&#123;input&#125;);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">         <span class="keyword">return</span> (String)retObj;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">/*Test*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">/*混淆MD5加密 前字符串+用户名+密码+后字符串*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">        String name = <span class="string">"abc"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">        String keya=<span class="string">"@#$&amp;*1029we"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">        String keyb=<span class="string">"&#125;)*vbks!1214"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">        String password = <span class="string">"a123456"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">        String str =keya+name+password+keyb;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">/*为了更加安全，在混洗后的MD5加密前后再添加相应的混淆字符串将32位字符变成52位*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">        String test=<span class="string">"$a&amp;m|:p"</span>+Md5Salt.getMD5(str.getBytes())+<span class="string">"4r0gf~!*^@j86"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">        System.out.println(str);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">        System.out.println(<span class="string">"混淆后："</span>+test);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">        System.out.println(<span class="string">"未混淆的password MD5:"</span>+Md5Salt.getMD5(password.getBytes()));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">/*混淆加密后，再进行base64加密得到最终加密结果*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">        System.out.println(<span class="string">"base64编码后:"</span>+Md5Salt.encodeBase64(test.getBytes()));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">        System.out.println(<span class="string">"base64编码后，再对其相关字母数字进行替换后的结果："</span>+Md5Salt.encodeBase64(test.getBytes()).replaceAll(<span class="string">"X"</span>,<span class="string">"8"</span>).replaceAll(<span class="string">"="</span>,<span class="string">"k"</span>).replaceAll(<span class="string">"R"</span>,<span class="string">"i"</span>).replaceAll(<span class="string">"2"</span>,<span class="string">"e"</span>).replaceAll(<span class="string">"m"</span>,<span class="string">"c"</span>).replaceAll(<span class="string">"J"</span>,<span class="string">"Es"</span>));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>运行以上代码得到如下结果：<br>@#$&amp;<em>1029weabca123456})*vbks!1214<br>混淆后：$a&amp;m|:p2a47a377IJcc4W4IWah3a3W94c7J34cJ4r0gf~!</em>^@j86<br>未混淆的password MD5:7h42JI20RWR037vI5Wa72h5vWJ7WJv94<br>base64编码后:<br>JGEmbXw6cDJhNDdhMzc3SUpjYzRXNElXYWgzYTNXOTRjN0ozNGNKNHIwZ2Z+ISpeQGo4Ng==<br>base64编码后，再对其相关字母数字进行替换后的结果：<br>EsGEcb8w6cDEshNDdhMzc3SUpjYzi8NEl8YWgzYTN8OTijN0ozNGNKNHIwZeZ+ISpeQGo4Ngkk<br>如图：</p>
+<img src="/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/20161128210129.png" class="" title="MD5加密输出">
+
+<p>首先我们将，base64编码后的代码<br>“JGEmbXw6cDJhNDdhMzc3SUpjYzRXNElXYWgzYTNXOTRjN0ozNGNKNHIwZ2Z+ISpeQGo4Ng==”<br>，放到网上的base64解密，进行解密，就可以得到混淆后的字符串<br>“$a&amp;m|:p2a47a377IJcc4W4IWah3a3W94c7J34cJ4r0gf~!*^@j86”<br>了。怎么样，看来base64编码，可有可无啊。<br>但是，如果我们队base64的编码结果进行了多次字符替换后，那么解密的的时候会得到什么结果呢？<br>我们将上面的替换后的base64编码<br>“EsGEcb8w6cDEshNDdhMzc3SUpjYzi8NEl8YWgzYTN8OTijN0ozNGNKNHIwZeZ+ISpeQGo4Ngkk”<br>拿去网上进行解密，发现解密出来的要么是乱码，要么就是提示字符串不是base64编码。如下图：</p>
+<img src="/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/20161128210959.png" class="" title="base64加密">
+<img src="/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/20161128211030.png" class="" title="base64解码">
+<p>这样一来，我想应该暂时密码是很难被破解的了吧，如果你还害怕不安全，那么再对base64编码后的的内容进行长度截取、或在替换后再进行进行MD5加密一次。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>一般网站对密码要求不是很高，且有些网站还是明文存储密码，这样对用户的隐私安全造成了不利的因素，但是对于大型网站来说，保证用户数据安全才是硬道理。但所有的加密都只是相对安全的，没有绝对的安全。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/base64/" rel="tag"># base64</a>
+              <a href="/tags/Md5/" rel="tag"># Md5</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/07/JQUERY%E6%8F%92%E4%BB%B6%E4%B9%8BSCROLLTOANYWHERE/" rel="prev" title="JQUERY插件之SCROLLTOANYWHERE">
+      <i class="fa fa-chevron-left"></i> JQUERY插件之SCROLLTOANYWHERE
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/" rel="next" title="使用VUE2制作音乐播放器">
+      使用VUE2制作音乐播放器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是MD5"><span class="nav-number">1.</span> <span class="nav-text">什么是MD5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MD5如此完美"><span class="nav-number">2.</span> <span class="nav-text">MD5如此完美</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何让MD5加密更为安全"><span class="nav-number">3.</span> <span class="nav-text">如何让MD5加密更为安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后"><span class="nav-number">4.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tony</p>
+  <div class="site-description" itemprop="description">Tony的前端开发笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

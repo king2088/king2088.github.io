@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="cordova或者phonegap都提供了一系列很牛的插件，为我们做开发省了不小力气，在app开发中，有一些app适合竖屏展示，某些app又适合横屏展示，因此我们得去设置它相关的config.xml 安卓上的横屏与竖屏首先我们先来看一下android上的某些原生Activity属性安卓 Activity 在设备上的显示方向。如果 Activity 是在多窗口模式下运行，系统会忽略该属性。Activ">
+<meta name="keywords" content="app,混合,横屏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于混合APP横屏、竖屏、翻转的解决方案">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%85%B3%E4%BA%8E%E6%B7%B7%E5%90%88APP%E6%A8%AA%E5%B1%8F%E3%80%81%E7%AB%96%E5%B1%8F%E3%80%81%E7%BF%BB%E8%BD%AC%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88&#x2F;index.html">
+<meta property="og:site_name" content="Tony&#39;s Notes">
+<meta property="og:description" content="cordova或者phonegap都提供了一系列很牛的插件，为我们做开发省了不小力气，在app开发中，有一些app适合竖屏展示，某些app又适合横屏展示，因此我们得去设置它相关的config.xml 安卓上的横屏与竖屏首先我们先来看一下android上的某些原生Activity属性安卓 Activity 在设备上的显示方向。如果 Activity 是在多窗口模式下运行，系统会忽略该属性。Activ">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%85%B3%E4%BA%8E%E6%B7%B7%E5%90%88APP%E6%A8%AA%E5%B1%8F%E3%80%81%E7%AB%96%E5%B1%8F%E3%80%81%E7%BF%BB%E8%BD%AC%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88&#x2F;QQ20180511-102510.png">
+<meta property="og:updated_time" content="2019-12-07T05:39:09.839Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%85%B3%E4%BA%8E%E6%B7%B7%E5%90%88APP%E6%A8%AA%E5%B1%8F%E3%80%81%E7%AB%96%E5%B1%8F%E3%80%81%E7%BF%BB%E8%BD%AC%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88&#x2F;QQ20180511-102510.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/07/%E5%85%B3%E4%BA%8E%E6%B7%B7%E5%90%88APP%E6%A8%AA%E5%B1%8F%E3%80%81%E7%AB%96%E5%B1%8F%E3%80%81%E7%BF%BB%E8%BD%AC%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>关于混合APP横屏、竖屏、翻转的解决方案 | Tony's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tony's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Notes for a front-end developer</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/%E5%85%B3%E4%BA%8E%E6%B7%B7%E5%90%88APP%E6%A8%AA%E5%B1%8F%E3%80%81%E7%AB%96%E5%B1%8F%E3%80%81%E7%BF%BB%E8%BD%AC%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于混合APP横屏、竖屏、翻转的解决方案
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:36:27 / 修改时间：13:39:09" itemprop="dateCreated datePublished" datetime="2019-12-07T13:36:27+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>cordova或者phonegap都提供了一系列很牛的插件，为我们做开发省了不小力气，在app开发中，有一些app适合竖屏展示，某些app又适合横屏展示，因此我们得去设置它相关的config.xml</p>
+<h2 id="安卓上的横屏与竖屏"><a href="#安卓上的横屏与竖屏" class="headerlink" title="安卓上的横屏与竖屏"></a>安卓上的横屏与竖屏</h2><p>首先我们先来看一下android上的某些原生Activity属性<br>安卓 Activity 在设备上的显示方向。如果 Activity 是在多窗口模式下运行，系统会忽略该属性。Activity有以下几种属性值</p>
+<p>“unspecified” 默认值。由系统选择方向。在不同设备上，系统使用的政策以及基于政策在特定上下文所做的选择可能有所差异。<br>“behind” 与 Activity 栈中紧接着它的 Activity 的方向相同。<br>“landscape” 横向方向（显示的宽度大于高度）。<br>“portrait” 纵向方向（显示的高度大于宽度）。<br>“reverseLandscape” 与正常横向方向相反的横向方向。API 级别 9 中的新增配置。</p>
+<a id="more"></a>
+<p>“reversePortrait” 与正常纵向方向相反的纵向方向。API 级别 9 中的新增配置。<br>“sensorLandscape” 横向方向，但根据设备传感器，可以是正常或反向的横向方向。API 级别 9 中的新增配置。<br>“sensorPortrait” 纵向方向，但根据设备传感器，可以是正常或反向的纵向方向。API 级别 9 中的新增配置。<br>“userLandscape” 横向方向，但根据设备传感器和用户的传感器首选项，可以是正常或反向的横向方向。 如果用户锁定了基于传感器的旋转，其行为与 landscape 相同，否则，其行为与 sensorLandscape 相同。API 级别 18 中的新增配置。<br>“userPortrait” 纵向方向，但根据设备传感器和用户的传感器首选项，可以是正常或反向的纵向方向。 如果用户锁定了基于传感器的旋转，其行为与 portrait 相同，否则，其行为与 sensorPortrait 相同。API 级别 18 中的新增配置。<br>“sensor” 方向由设备方向传感器决定。显示方向取决于用户如何手持设备，它会在用户旋转设备时发生变化。 但一些设备默认情况下不会旋转到所有四种可能的方向。要允许全部四种方向，请使用 “fullSensor”。<br>“fullSensor” 方向由 4 种方向中任一方向的设备方向传感器决定。这与 “sensor” 类似，不同的是它允许所有 4 种可能的屏幕方向，无论设备正常情况下采用什么方向（例如，一些设备正常情况下不使用反向纵向或反向横向，但它支持这些方向）。 API 级别 9 中的新增配置。<br>“nosensor” 决定方向时不考虑物理方向传感器。传感器会被忽略，因此显示不会随用户对设备的移动而旋转。 除了这个区别，系统在选择方向时使用的政策与“unspecified”设置相同。<br>“user” 用户当前的首选方向。<br>“fullUser” 如果用户锁定了基于传感器的旋转，其行为与 user 相同，否则，其行为与 fullSensor 相同，允许所有 4 种可能的屏幕方向。 API 级别 18 中的新增配置。<br>“locked” 将方向锁定在其当前的任意旋转方向。API 级别 18 中的新增配置。</p>
+<p>丰富吧，因此Android上我们可以使用如此之多的属性，我们可以在config.xml中添加如下代码来控制安卓下我们想要的横屏、竖屏、旋转模式</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">platform</span> <span class="attr">name</span>=<span class="string">"android"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"Orientation"</span> <span class="attr">value</span>=<span class="string">"sensorLandscape"</span> /&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">platform</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>这里的代码表示当前app仅能横屏并翻转，但无法竖屏</p>
+<h2 id="iOS上的横屏与竖屏"><a href="#iOS上的横屏与竖屏" class="headerlink" title="iOS上的横屏与竖屏"></a>iOS上的横屏与竖屏</h2><p>iOS上的横屏与竖屏与安卓差不多，目前iOS上Orientation属性的值仅支持3个，分别为default（默认可纵横旋转）、landscape（强制横屏，默认下横屏不能翻转）、portrait（强制竖屏，默认下竖屏无法翻转）</p>
+<p>比如如下代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">platform</span> <span class="attr">name</span>=<span class="string">"ios"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"Orientation"</span> <span class="attr">value</span>=<span class="string">"landscape"</span> /&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">platform</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>那要如何才能让iOS上能够横屏下页面翻转，而禁止竖屏显示。值得庆幸的是Apple的Xcode为我们提供了这个选项，如下图</p>
+<img src="/2019/12/07/%E5%85%B3%E4%BA%8E%E6%B7%B7%E5%90%88APP%E6%A8%AA%E5%B1%8F%E3%80%81%E7%AB%96%E5%B1%8F%E3%80%81%E7%BF%BB%E8%BD%AC%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/QQ20180511-102510.png" class="" title="xcode设置屏幕方向">
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/app/" rel="tag"># app</a>
+              <a href="/tags/%E6%B7%B7%E5%90%88/" rel="tag"># 混合</a>
+              <a href="/tags/%E6%A8%AA%E5%B1%8F/" rel="tag"># 横屏</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/07/ANGULAR2-%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" rel="prev" title="ANGULAR2+数据更新但视图不更新的解决方法">
+      <i class="fa fa-chevron-left"></i> ANGULAR2+数据更新但视图不更新的解决方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/07/JAVA-SPRING-BOOT%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="next" title="JAVA-SPRING-BOOT开发环境配置">
+      JAVA-SPRING-BOOT开发环境配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安卓上的横屏与竖屏"><span class="nav-number">1.</span> <span class="nav-text">安卓上的横屏与竖屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS上的横屏与竖屏"><span class="nav-number">2.</span> <span class="nav-text">iOS上的横屏与竖屏</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tony</p>
+  <div class="site-description" itemprop="description">Tony的前端开发笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

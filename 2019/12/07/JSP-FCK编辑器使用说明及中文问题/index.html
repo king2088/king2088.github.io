@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="2008年，我自己配置了一个JSP+FCK编辑器的实例，没有想到突然疯传于网络，很多朋友都通过网络来寻找配置好的编辑器。时隔两年后，任然有人通过网络与我取得联系，一直到现在，我时不时的会接到一些邮件，主要是索要JSP+FCK配置好的编辑器，也有朋友通过QQ加我，向我索要。说实话，jsp+fck配置好的，目前已经被我删除了，当时我花了不少时间去研究JSP+FCK，主要就是由于FCK编辑器是一款免费并">
+<meta name="keywords" content="jsp,fck,中文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP+FCK编辑器使用说明及中文问题">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98&#x2F;index.html">
+<meta property="og:site_name" content="Tony&#39;s Notes">
+<meta property="og:description" content="2008年，我自己配置了一个JSP+FCK编辑器的实例，没有想到突然疯传于网络，很多朋友都通过网络来寻找配置好的编辑器。时隔两年后，任然有人通过网络与我取得联系，一直到现在，我时不时的会接到一些邮件，主要是索要JSP+FCK配置好的编辑器，也有朋友通过QQ加我，向我索要。说实话，jsp+fck配置好的，目前已经被我删除了，当时我花了不少时间去研究JSP+FCK，主要就是由于FCK编辑器是一款免费并">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98&#x2F;20150624233238.png">
+<meta property="og:updated_time" content="2019-12-07T01:51:45.516Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98&#x2F;20150624233238.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/07/JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JSP+FCK编辑器使用说明及中文问题 | Tony's Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tony's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Notes for a front-end developer</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="Tony的前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony's Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JSP+FCK编辑器使用说明及中文问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 09:42:03 / 修改时间：09:51:45" itemprop="dateCreated datePublished" datetime="2019-12-07T09:42:03+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>2008年，我自己配置了一个JSP+FCK编辑器的实例，没有想到突然疯传于网络，很多朋友都通过网络来寻找配置好的编辑器。时隔两年后，任然有人通过网络与我取得联系，一直到现在，我时不时的会接到一些邮件，主要是索要JSP+FCK配置好的编辑器，也有朋友通过QQ加我，向我索要。说实话，jsp+fck配置好的，目前已经被我删除了，当时我花了不少时间去研究JSP+FCK，主要就是由于FCK编辑器是一款免费并可以自己进行插件开发，其使用也方便，功能超级强大。不过这几年过去了，我一直没有再做java开发了，而是直接转为做SEO、PHP开发，由此我也向大家道歉，我没有一一和及时回复大家的相应问题，那么今天我就在此再次为大家提供有关于JSP+FCK编辑器方面的知识。</p>
+<p>目前FCK官方一直都有java版本FCK，如今FCK早已更名为了CKEditor了，之前的FCK也已经很多年木有更新了，大家要是下载了FCK JAVA版的，里面都会包含着很多实用实例，只需要下载FCK官方的JAVA版本.war文件放到tomcat目录即可运行相应的实例了。</p>
+<p>由于近来FCK官方对FCK JAVA版编辑器的更新感觉是越来越慢了，而目前我所看到最新版的还是2010-01-05的FCK2.6版本。FCK官方也进行了其他编辑器的开发，那就是CKEditor，所以很多朋友去网上搜索FCK编辑器的时候，往往都是只能搜索到CKEditor，所以很难下载到自己想要的FCK官方版，一般的朋友就直接去百度一下随便下载个就完事了。这里我得提醒大家，随意下载的FCK编辑器可能是精简版的，有些东西被删除了，或者你下载到的基本是老版本的，有些java类库也已经使用不是很频繁了。由此我就给大家一个官方下载地址，希望大家都能下载到<a href="http://sourceforge.net/projects/fckeditor/files/FCKeditor.Java/" target="_blank" rel="noopener">http://sourceforge.net/projects/fckeditor/files/FCKeditor.Java/</a> 点击此下载地址后，你可以选择相应的版本进行下载你需要的FCK，如图</p>
+<a id="more"></a>
+<img src="/2019/12/07/JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/20150624233238.png" class="" title="FCK editor">
+
+<p>那么建议大家尽量选择最新的2.6版的进行下载，如果你使用的是tomcat，那么就下载的.war文件，或者下载zip格式的。并将.war文件放到tomcat下webapps目录即可，如果你下载的zip那么直接解压缩到tomcat下webapps目录，然后将目录名字改为fck，然后打开浏览器输入<a href="http://localhost:8080/fck" target="_blank" rel="noopener">http://localhost:8080/fck</a> 即可访问到FCK的实例。</p>
+<p>你可以对这些实例进行相应的操作，比如上传图片、上传flash、插入各式各样的媒体等等操作，那么就说明，官方版本中的实例是没有任何问题的，我们可以直接根据官方实例中的相应使用方法来进行对FCK进行使用，而无需再对其进行配置了，完全没有必要再进行配置了。因为2.6版本与2.4版本的区别很大，所以2.4版本中才需要进行相应的配置。</p>
+<h2 id="编写实例"><a href="#编写实例" class="headerlink" title="编写实例"></a>编写实例</h2><p>那么下面我给大家写一个例子，就可以直接使用，而不需要再进行修改，大家可以打开FCK根目录下的jsp目录，随便找到一个jsp文件打开，都可以发现，调用的方式都不一样，那么我们该选择什么样的方式进行开发才简便呢？我个人觉得第2个例子比较简单，所以我选择了第2个例子，其中最重要的调用代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span> pageEncoding=<span class="string">"UTF-8"</span> %&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.fckeditor.net"</span> prefix=<span class="string">"FCK"</span> %&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;title&gt;FCKeditor - JSP 实例&lt;/title&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;/head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;FCKeditor - JSP 实例&lt;/h1&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"../sampleposteddata.jsp"</span> method=<span class="string">"post"</span> target=<span class="string">"_blank"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&lt;FCK:editor instanceName=<span class="string">"EditorDefault"</span> height=<span class="string">"350px"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&lt;jsp:attribute name="value"&gt;&lt;/jsp:attribute&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&lt;/FCK:editor&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&lt;br /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&lt;/form&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&lt;/body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&lt;/html&gt;</span></pre></td></tr></table></figure>
+<p>从以上代码中来看，首先整个文档中与FCK至关重要的几段代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.fckeditor.net"</span> prefix=<span class="string">"FCK"</span> %&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;FCK:editor instanceName=<span class="string">"EditorDefault"</span> height=<span class="string">"350px"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//这段代码中instanceName="EditorDefault"主要是命名此FCK的名字，就像命名一个textarea的名字</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;jsp:attribute name="value"&gt;&lt;/jsp:attribute&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//这段代码之间主要是我们在编辑器中插入的内容</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;/FCK:editor&gt;</span></pre></td></tr></table></figure>
+<p>以上代码为最主要代码，其中&lt;FCK:editor instanceName=”EditorDefault”&gt;中还有很多参数，比如heigh、width、path、value等值，你可以直接使用。</p>
+<p>以上实例是非常简单的，我们只需要将那两个重要的代码段添加到jsp文档中即可实现调用FCK编辑器的功能，而且我们并不需要再次进行对FCK中的相应的js配置，直接就可以使用。</p>
+<h2 id="中文问题"><a href="#中文问题" class="headerlink" title="中文问题"></a>中文问题</h2><p>大家都知道FCK上传中对中文支持的不是很好，有时候会显示乱码，或者会无法显示中文名字的文件，其解决方法其实不是很难，主要就是转码的问题。</p>
+<p>1、我们首先到官方下载FCK源码包fckeditor-java-2.6-src.zip。</p>
+<p>2、在你的工程目录下新建net.fckeditor.connector包，复制fckeditor-java-2.6-src\java-core\src\main\java\net\fckeditor\connector\Dispatcher.java文件到该包下。</p>
+<p>3、编辑该文件 在doGet成员方法下找到：String newFolderNameStr = request.getParameter(“NewFolderName”); 在后面添加以下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">String temp= <span class="keyword">new</span> String(newFolderNameStr.getBytes(“iso8859-<span class="number">1</span>″),”utf-<span class="number">8</span>″); newFolderNameStr = temp;</span></pre></td></tr></table></figure>
+<p>4、修改上传文件的文件名【使名称变为当前时间（也可以使用UUID构造名称）】避免出现中文：<br>找到doPost方法下的： String fileName = FilenameUtils.getName(uplFile.getName()); 在后面添加以下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">String suffix = fileName.substring(fileName.lastIndexOf(“.”)); Calendar cad = Calendar.getInstance(); fileName = String.valueOf(cad.get(Calendar.YEAR))+String.valueOf(cad.get(Calendar.MONTH))+String.valueOf(cad.get(Calendar.DAY_OF_MONTH))+String.valueOf(cad.get(Calendar.HOUR_OF_DAY))+String.valueOf(cad.get(Calendar.MINUTE))+String.valueOf(cad.get(Calendar.SECOND)); fileName = fileName + suffix;</span></pre></td></tr></table></figure>
+<p>5、解压java-core-2.6.jar文件，并部署你的项目，在部署后的classes文件夹下找到你编译好的Dispatcher.class文件替换 java-core-2.6.jar解压后的net.fckeditor.connector文件夹下的Dispatcher.class，并且重新打包该文件。</p>
+<p>6、重新将新打包生成的java-core-2.6.jar包导入到项目中，重新发布即可</p>
+<p>打包步骤：</p>
+<p>1、搭建jdk环境：在环境变量的path中将jdk所目录下的bin目录的路径加入到path中（否则在运用jar命令进行打包时会出现不是内部或外部命令的提示）<br>2、在cmd下cd到替换文件后了的fckeditor-java-core-2.6目录下<br>3、在命令行输入：jar cvf java-core-2.6.jar <em>.</em>即可</p>
+<h2 id="最后的唠叨"><a href="#最后的唠叨" class="headerlink" title="最后的唠叨"></a>最后的唠叨</h2><p>在FCK中其实我们并不需要去配置任何东西了，我们主要做的就是让其支持中文文件上传即可，根据FCK官方提供的java版本中，其已经有了很多实例了，而我上面给出的仅仅是其中一种是有的方法，也是最常用的一种方法，大家可以根据自己的需求从中获取你需要的方法，然后直接进行使用即可。而没有必要再次进行配置，官方的FCK配置已经很完美了</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jsp/" rel="tag"># jsp</a>
+              <a href="/tags/fck/" rel="tag"># fck</a>
+              <a href="/tags/%E4%B8%AD%E6%96%87/" rel="tag"># 中文</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/07/%E5%87%A0%E7%A7%8DNGINX%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%98%B2%E7%9B%97%E9%93%BE%E8%AF%A6%E7%BB%86%E8%AE%BE%E7%BD%AE/" rel="prev" title="几种NGINX服务器防盗链详细设置">
+      <i class="fa fa-chevron-left"></i> 几种NGINX服务器防盗链详细设置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/07/MYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F%E5%91%BD%E4%BB%A4/" rel="next" title="MYSQL数据库备份还原命令">
+      MYSQL数据库备份还原命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编写实例"><span class="nav-number">1.</span> <span class="nav-text">编写实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中文问题"><span class="nav-number">2.</span> <span class="nav-text">中文问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的唠叨"><span class="nav-number">3.</span> <span class="nav-text">最后的唠叨</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tony</p>
+  <div class="site-description" itemprop="description">Tony的前端开发笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
