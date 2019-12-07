@@ -32,7 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
     algolia: {
       appID: '',
       apiKey: '',
@@ -405,33 +405,38 @@
 
   
 
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: 'UuAJSR3Eymabh3ElUqbuT3aT-gzGzoHsz',
+      appKey: 'PdJgFSl3EEwJKUn9rYSFxvni',
+      placeholder: "Just go go",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
 </body>
 </html>
-ggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Tony</p>
+me" itemprop="name">Tony</p>
   <div class="site-description" itemprop="description">Tony的前端开发笔记</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -538,6 +543,35 @@ ggle-line toggle-line-first"></span>
   
 
   
+
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: 'UuAJSR3Eymabh3ElUqbuT3aT-gzGzoHsz',
+      appKey: 'PdJgFSl3EEwJKUn9rYSFxvni',
+      placeholder: "Just go go",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

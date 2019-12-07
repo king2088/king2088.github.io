@@ -32,7 +32,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
     algolia: {
       appID: '',
       apiKey: '',
@@ -47,7 +47,7 @@
 </script>
 
   <meta name="description" content="setTimeout就是一个定时器，它可以很容易地实现在规定时间内所要执行的函数或方法。但是我再setTimeout的使用过程中就出现了内存溢出的各种问题。下面我将使用一个当前时间与过去的某个时间差的计算方式来进行讲解setTimeout，首先来看逻辑思想部分。对于任何编程语言，我们刚开始都需要进行需求分析，需求分析就是一个实现功能的想法或者步骤。比如我在这个例子中将会使用本地当前时间减去我所获得">
-<meta name="keywords" content="vue,settimeout,内存溢出">
+<meta name="keywords" content="settimeout,vue,内存溢出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SETTIMEOUT出现内存溢出的解决办法">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E4%BD%BF%E7%94%A8SETTIMEOUT%E5%87%BA%E7%8E%B0%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95&#x2F;index.html">
@@ -246,6 +246,20 @@
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/07/%E4%BD%BF%E7%94%A8SETTIMEOUT%E5%87%BA%E7%8E%B0%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/%E4%BD%BF%E7%94%A8SETTIMEOUT%E5%87%BA%E7%8E%B0%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -286,8 +300,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/vue/" rel="tag"># vue</a>
               <a href="/tags/settimeout/" rel="tag"># settimeout</a>
+              <a href="/tags/vue/" rel="tag"># vue</a>
               <a href="/tags/%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/" rel="tag"># 内存溢出</a>
           </div>
 
@@ -317,6 +331,7 @@
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -476,6 +491,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: 'UuAJSR3Eymabh3ElUqbuT3aT-gzGzoHsz',
+      appKey: 'PdJgFSl3EEwJKUn9rYSFxvni',
+      placeholder: "Just go go",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

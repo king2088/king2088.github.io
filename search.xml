@@ -602,8 +602,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>settimeout</tag>
+        <tag>vue</tag>
         <tag>内存溢出</tag>
       </tags>
   </entry>
