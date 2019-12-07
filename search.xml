@@ -126,8 +126,8 @@
       </categories>
       <tags>
         <tag>node</tag>
-        <tag>乱码</tag>
         <tag>中文</tag>
+        <tag>乱码</tag>
         <tag>addons</tag>
       </tags>
   </entry>
@@ -992,8 +992,8 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>base64</tag>
         <tag>Java</tag>
+        <tag>base64</tag>
         <tag>Md5</tag>
       </tags>
   </entry>
