@@ -19,7 +19,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('http://yoursite.com').hostname,
+    hostname: new URL('http://esyou.net').hostname,
     root: '/',
     scheme: 'Muse',
     version: '7.6.0',
@@ -50,19 +50,19 @@
 <meta name="keywords" content="node,mongodb,express">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NODE+EXPRESS+MONGODB注册登录实例">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;index.html">
-<meta property="og:site_name" content="Tony&#39;s Notes">
+<meta property="og:url" content="http:&#x2F;&#x2F;esyou.net&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;index.html">
+<meta property="og:site_name" content="ESYou">
 <meta property="og:description" content="如果你之前对mysql以及Oracle等关系数据库有过了解的话，那么你mongodb对于你来说上手应该是很快的。但是mongodb并不是使用诸如mysql与Oracle中的select、delete、update等关键字进行SQL查询的，因为具mongodb官方介绍说，mongodb是一个nosql的数据库，也就是说，他不需要你对sql语句有一定的了解，但是如果你已经了解了sql语句，那么我相信你">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419224806.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419232550.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419232753.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419233608.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419224806.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419232550.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419232753.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419233608.png">
 <meta property="og:updated_time" content="2019-12-07T04:15:46.911Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419224806.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;2019&#x2F;12&#x2F;07&#x2F;NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B&#x2F;20170419224806.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/07/NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B/">
+<link rel="canonical" href="http://esyou.net/2019/12/07/NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B/">
 
 
 <script id="page-configurations">
@@ -74,7 +74,7 @@
   };
 </script>
 
-  <title>NODE+EXPRESS+MONGODB注册登录实例 | Tony's Notes</title>
+  <title>NODE+EXPRESS+MONGODB注册登录实例 | ESYou</title>
   
 
 
@@ -118,7 +118,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Tony's Notes</span>
+        <span class="site-title">ESYou</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -209,7 +209,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/07/NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/NODE-EXPRESS-MONGODB%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -218,7 +218,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tony's Notes">
+      <meta itemprop="name" content="ESYou">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
