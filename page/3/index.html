@@ -203,6 +203,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="ESYOU--前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ESYOU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/" class="post-title-link" itemprop="url">使用CSS设置打印</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:04:49 / 修改时间：13:06:54" itemprop="dateCreated datePublished" datetime="2019-12-07T13:04:49+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们都知道A4的尺寸是210mm * 297mm,在css中，我们可以直接使用毫米的单位来设置页面的宽高，当然你也可以使用相应的像素进行设置，不过只是通过body或者html来设置宽高的话，可能也会出现问题，而在这里我们需要使用@page来对页面进行定义，@page主要是用于打印的时候定义页面的类型，比如A4，A5，A3等等。下面先来看一下@page的使用方法。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@<span class="keyword">page</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">size</span>: A4;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>另外在设置好@page后，我们可能还会需要设置分页，分页很简单，直接使用page-break-before:always;或者page-break-after:always;就可以设置分页，在网页中是不会显示任何效果的，不过你可以通过浏览器的打印功能进行PDF预览来查看分页是否符合你的要求。<br>不过分页的使用必须的写在@media print中，使用如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> print&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.page-break</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="attribute">page-break-before</span>:always;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>.page-break是需要分页的class的元素。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/JAVASCRIPT%E6%8C%89%E7%85%A7%E7%BB%8F%E7%BA%AC%E5%BA%A6%E5%9D%90%E6%A0%87%E5%AF%B9%E6%AF%94%E4%B8%8E%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E8%B7%9D%E7%A6%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1012,100 +1107,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="ESYOU--前端开发笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ESYOU">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">Angular2中如何制作如同input的清空功能</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-07 12:27:46 / 修改时间：12:32:50" itemprop="dateCreated datePublished" datetime="2019-12-07T12:27:46+08:00">2019-12-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">前端开发</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>使用过jQuery的童鞋，想要制作一个清空input内容的图标按钮是非常简单的事情，但是今天我要来说下angular2+版本中制作如此一个功能，远远比jQuery简单得多。而且是超级简单，根本不用写typescript代码，仅在html模板中就可以直接实现，当然我们也可以通过typescript的代码来进行实现，大同小异啊！<br>先来看实现后的大致功能效果，如下图：</p>
-<img src="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/20170622215827.jpg" class="" title="input清空">
-<p>要制作这么一个功能，使用angular制作其实并不困难，不过要在css中下功夫，而js逻辑是很简单的事情，并且angular中实现并无需写js逻辑。<br>关于css部分，请自行进行编写，这里我只实现功能，css部分实现的思想也很简单，利用position定位来对按钮或者图标进行定位到input的右边即可实现。</p>
-<h2 id="angular直接在模板中实现清空input的方法。"><a href="#angular直接在模板中实现清空input的方法。" class="headerlink" title="angular直接在模板中实现清空input的方法。"></a>angular直接在模板中实现清空input的方法。</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>清空input<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    用户名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> #<span class="attr">name</span> <span class="attr">placeholder</span>=<span class="string">"输入用户名"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> (<span class="attr">click</span>)=<span class="string">"name.value=''"</span>&gt;</span>X<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    密&amp;nbsp;&amp;nbsp;&amp;nbsp;码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pwd"</span> #<span class="attr">pwd</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> (<span class="attr">click</span>)=<span class="string">"pwd.value=''"</span>&gt;</span>X<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1176,7 +1177,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1189,7 +1190,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

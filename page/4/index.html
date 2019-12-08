@@ -203,6 +203,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="ESYOU--前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ESYOU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">Angular2中如何制作如同input的清空功能</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 12:27:46 / 修改时间：12:32:50" itemprop="dateCreated datePublished" datetime="2019-12-07T12:27:46+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用过jQuery的童鞋，想要制作一个清空input内容的图标按钮是非常简单的事情，但是今天我要来说下angular2+版本中制作如此一个功能，远远比jQuery简单得多。而且是超级简单，根本不用写typescript代码，仅在html模板中就可以直接实现，当然我们也可以通过typescript的代码来进行实现，大同小异啊！<br>先来看实现后的大致功能效果，如下图：</p>
+<img src="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/20170622215827.jpg" class="" title="input清空">
+<p>要制作这么一个功能，使用angular制作其实并不困难，不过要在css中下功夫，而js逻辑是很简单的事情，并且angular中实现并无需写js逻辑。<br>关于css部分，请自行进行编写，这里我只实现功能，css部分实现的思想也很简单，利用position定位来对按钮或者图标进行定位到input的右边即可实现。</p>
+<h2 id="angular直接在模板中实现清空input的方法。"><a href="#angular直接在模板中实现清空input的方法。" class="headerlink" title="angular直接在模板中实现清空input的方法。"></a>angular直接在模板中实现清空input的方法。</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>清空input<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    用户名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> #<span class="attr">name</span> <span class="attr">placeholder</span>=<span class="string">"输入用户名"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> (<span class="attr">click</span>)=<span class="string">"name.value=''"</span>&gt;</span>X<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    密&amp;nbsp;&amp;nbsp;&amp;nbsp;码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pwd"</span> #<span class="attr">pwd</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> (<span class="attr">click</span>)=<span class="string">"pwd.value=''"</span>&gt;</span>X<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/Angular2%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%A6%82%E5%90%8Cinput%E7%9A%84%E6%B8%85%E7%A9%BA%E5%8A%9F%E8%83%BD/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/ANGULAR2-%E4%BD%BF%E7%94%A8IFRAME%E5%B1%95%E7%A4%BA%E5%A4%96%E9%93%BE%E6%8F%90%E7%A4%BA%E9%94%99%E8%AF%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1042,99 +1136,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="ESYOU--前端开发笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ESYOU">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/" class="post-title-link" itemprop="url">如何让MD5加密更加安全？</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-07 11:06:12 / 修改时间：11:16:30" itemprop="dateCreated datePublished" datetime="2019-12-07T11:06:12+08:00">2019-12-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什么是MD5"><a href="#什么是MD5" class="headerlink" title="什么是MD5"></a>什么是MD5</h2><p>MD5即Message-Digest Algorithm 5（信息-摘要算法5），用于确保信息传输完整一致。是计算机广泛使用的杂凑算法之一（又译摘要算法、哈希算法），主流编程语言普遍已有MD5实现。将数据（如汉字）运算为另一固定长度值，是杂凑算法的基础原理，MD5的前身有MD2、MD3和MD4。<br>MD5算法具有以下特点：<br>1、压缩性：任意长度的数据，算出的MD5值长度都是固定的。<br>2、容易计算：从原数据计算出MD5值很容易。<br>3、抗修改性：对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。<br>4、强抗碰撞：已知原数据和其MD5值，想找到一个具有相同MD5值的数据（即伪造数据）是非常困难的。</p>
-<h2 id="MD5如此完美"><a href="#MD5如此完美" class="headerlink" title="MD5如此完美"></a>MD5如此完美</h2><p>虽然上面把MD5说得这么完美，而且MD5加密是不可逆加密、单向加密（就是说MD5加密后，是无法再通过相关的破解方法破解出明文密码的），但是如果真要破解MD5那也是一件很容易的事情，目前很多网站都提供相关的碰撞解密MD5的功能，因此，简单的字符串MD5加密，很容易就会被破解。那么MD5还能使用吗？肯定是可以使用的，但是必须使用混淆的方法来对加密的数据进行混淆加密。在java开发中经常都会使用混淆加密来加密字符串。如果混淆的字符串被别人发现了，那样也照样是不安全的。</p>
-<h2 id="如何让MD5加密更为安全"><a href="#如何让MD5加密更为安全" class="headerlink" title="如何让MD5加密更为安全"></a>如何让MD5加密更为安全</h2><p>比如说网站用户密码加密，一般的肯定会想到，直接使用MD5(用户名+密码+”字符串”)的方式进行加密，以增加破解难度。当然这种方法很不错，确实能够保证数据的安全，但是也说不准，假如别人破解了你2个MD5密码的话，那么就会知道，你的加密模式。<br>因此，我个人建议是使用SHA1+MD5混合加密模式，或者MD5+base64的方式，使用这样的方式后，我们再对最终加密结果进行相应的替换即可得到一个很难破解的密码了。<br>下面我以java中MD5+base64的方式，编写了一个实例，大家可以学习下这种思路。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1205,7 +1206,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1218,7 +1219,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

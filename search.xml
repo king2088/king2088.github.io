@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>APP开发之在CHROME中进行真机调试</title>
+    <url>/2019/12/08/APP%E5%BC%80%E5%8F%91%E4%B9%8B%E5%9C%A8CHROME%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<p>使用cordova或者ionic进行app开发时，在浏览器端总是无法监听到cordova插件的运行效果，我们总是需要将app安装到手机上进行运行查看，但是在手机上我们仅能进行查看运行效果，如果哪里出错了我们并无法发现，也不会报console错误，chrome为我们提供了一个很不错的设备调试工具，通过chrome的设备调试工具，我们可以连接到手机以及模拟器，并进行监听运行状态。<br>如果你使用的是手机进行调试，那么请打开你的usb调试功能，否则chrome无法识别你的设备，我使用的是android逍遥游模拟器，下面就来看看如何进行调试吧！</p>
+<h2 id="手机USB调试打开，数据线连接到电脑"><a href="#手机USB调试打开，数据线连接到电脑" class="headerlink" title="手机USB调试打开，数据线连接到电脑"></a>手机USB调试打开，数据线连接到电脑</h2><p>在命令行输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">adb devices</span></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>查看是否已经连接上手机设备<br>（如果是模拟器）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">adb connect 127.0.0.1:端口号</span></pre></td></tr></table></figure>
+<h2 id="在chrome中输入如下命令"><a href="#在chrome中输入如下命令" class="headerlink" title="在chrome中输入如下命令"></a>在chrome中输入如下命令</h2><p>chrome://inspect<br>chrome会为你找到目前已经连接的Android设备</p>
+<img src="/2019/12/08/APP%E5%BC%80%E5%8F%91%E4%B9%8B%E5%9C%A8CHROME%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/20170702205222.jpg" class="" title="chrome:&#x2F;&#x2F;inspect界面">
+<h2 id="点击inspect"><a href="#点击inspect" class="headerlink" title="点击inspect"></a>点击inspect</h2><img src="/2019/12/08/APP%E5%BC%80%E5%8F%91%E4%B9%8B%E5%9C%A8CHROME%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/20170702205350.jpg" class="" title="真机调试">
+<p>看到鼠标移动到element上的时候，真机中的效果了吧，这样你就可以使用chrome为你的app进行调试了，你可以查看console信息，可以发现是哪里出现了问题！</p>
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>app</tag>
+        <tag>chrome</tag>
+        <tag>真机调试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IONIC2+使用SLIDES打造漂亮的导航条</title>
     <url>/2019/12/07/IONIC2-%E4%BD%BF%E7%94%A8SLIDES%E6%89%93%E9%80%A0%E6%BC%82%E4%BA%AE%E7%9A%84%E5%AF%BC%E8%88%AA%E6%9D%A1/</url>
     <content><![CDATA[<p>由于之前遇到一个项目使用的ionic中的tabs来做导航条，实际在使用中，总是觉得怪怪的，并且不只是影响到使用效果，更是发生了很多令我费解的问题，由于导航级别太多、分类太复杂，从而导致了tabs的展示令人头痛。不过由于项目已经固化了，没法再进行相应修改和调整，目前也没有重构的打算。也是由于这个一个tabs，当时让我想到了使用Slides组件来打造一个导航条。大家可以先看一下效果：</p>
@@ -127,8 +150,8 @@
       <tags>
         <tag>node</tag>
         <tag>乱码</tag>
-        <tag>addons</tag>
         <tag>中文</tag>
+        <tag>addons</tag>
       </tags>
   </entry>
   <entry>
@@ -568,9 +591,9 @@
         <category>前端开发</category>
       </categories>
       <tags>
+        <tag>app</tag>
         <tag>Cordova</tag>
         <tag>Mac</tag>
-        <tag>app</tag>
       </tags>
   </entry>
   <entry>
@@ -807,8 +830,8 @@
       </categories>
       <tags>
         <tag>node</tag>
-        <tag>express</tag>
         <tag>mongodb</tag>
+        <tag>express</tag>
       </tags>
   </entry>
   <entry>
@@ -992,8 +1015,8 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>base64</tag>
+        <tag>Java</tag>
         <tag>Md5</tag>
       </tags>
   </entry>
@@ -1223,9 +1246,9 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>中文</tag>
         <tag>jsp</tag>
         <tag>fck</tag>
+        <tag>中文</tag>
       </tags>
   </entry>
   <entry>
