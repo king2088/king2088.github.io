@@ -47,7 +47,7 @@
 </script>
 
   <meta name="description" content="setTimeout就是一个定时器，它可以很容易地实现在规定时间内所要执行的函数或方法。但是我再setTimeout的使用过程中就出现了内存溢出的各种问题。下面我将使用一个当前时间与过去的某个时间差的计算方式来进行讲解setTimeout，首先来看逻辑思想部分。对于任何编程语言，我们刚开始都需要进行需求分析，需求分析就是一个实现功能的想法或者步骤。比如我在这个例子中将会使用本地当前时间减去我所获得">
-<meta name="keywords" content="settimeout,vue,内存溢出">
+<meta name="keywords" content="vue,settimeout,内存溢出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SETTIMEOUT出现内存溢出的解决办法">
 <meta property="og:url" content="http:&#x2F;&#x2F;esyou.net&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E4%BD%BF%E7%94%A8SETTIMEOUT%E5%87%BA%E7%8E%B0%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95&#x2F;index.html">
@@ -263,6 +263,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
   <span class="post-meta-item">
     
@@ -276,7 +283,21 @@
     </a>
   </span>
   
-  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -317,8 +338,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/settimeout/" rel="tag"># settimeout</a>
               <a href="/tags/vue/" rel="tag"># vue</a>
+              <a href="/tags/settimeout/" rel="tag"># settimeout</a>
               <a href="/tags/%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/" rel="tag"># 内存溢出</a>
           </div>
 
@@ -422,7 +443,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-count">103</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -457,6 +478,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Tony</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">145k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:12</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>
@@ -465,6 +496,26 @@
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 

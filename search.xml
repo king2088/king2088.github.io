@@ -51,6 +51,13 @@
     <content><![CDATA[<p>有时候在处理某些URL时，可能会遇到404等情况，比如我们在国内使用谷歌地图api一样，我们在请求的时候可能会发生404问题，这个时候我们又想去判断下当前url为404的话，我们则采用其他地图的api，当然我这里所说的仅仅只是一个使用场景，可能你也会遇到其他更多场景，并且也需要验证当前URL的有效性，因此我就直接采用了XMLHttpRequest的方式进行对URL的有效性进行验证。当然对于谷歌地图这个场景，我不建议大家使用这种方法啦，毕竟谷歌地图的api总是抽风，有时候可以访问有时候又不能访问，并且经常不会出现404，基本都是延时很久，所以这个方法不适用与谷歌地图与百度地图的切换判断。<br>代码及其简单，并且测试也通过了，大部分情况下只要遇到404页面，到能判断到是否有效</p>
 <a id="more"></a>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> xmlhttp = <span class="keyword">new</span> XMLHttpRequest();</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (xmlhttp != <span class="literal">null</span>) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    xmlhttp.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        <span class="keyword">if</span> (xmlhttp.readyState == <span class="number">4</span>) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            <span class="keyword">if</span> (xmlhttp.status == <span class="number">200</span>) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                <span class="built_in">console</span>.log(<span class="string">'验证成功，URL可用'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                <span class="built_in">console</span>.log(<span class="string">"验证失败，URL不可用，错误信息:"</span>, xmlhttp.statusText);</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    xmlhttp.open(<span class="string">"GET"</span>, url, <span class="literal">false</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    xmlhttp.send(<span class="literal">null</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'你的浏览器OUT了，不支持XMLHTTP，请更换Firefox、Chrome最新版本浏览器'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>xmlHttpRequest</tag>
+        <tag>url</tag>
+      </tags>
   </entry>
   <entry>
     <title>ANGULAR4-HTTP拦截器</title>
@@ -625,8 +632,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>settimeout</tag>
         <tag>vue</tag>
+        <tag>settimeout</tag>
         <tag>内存溢出</tag>
       </tags>
   </entry>
@@ -1125,8 +1132,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>APP</tag>
         <tag>Cordova</tag>
+        <tag>APP</tag>
         <tag>jquery</tag>
         <tag>WP REST API</tag>
       </tags>
@@ -1148,8 +1155,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>APP</tag>
         <tag>Cordova</tag>
+        <tag>APP</tag>
         <tag>开发环境</tag>
       </tags>
   </entry>
