@@ -149,8 +149,8 @@
       </categories>
       <tags>
         <tag>node</tag>
-        <tag>乱码</tag>
         <tag>中文</tag>
+        <tag>乱码</tag>
         <tag>addons</tag>
       </tags>
   </entry>
@@ -591,8 +591,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>app</tag>
         <tag>Cordova</tag>
+        <tag>app</tag>
         <tag>Mac</tag>
       </tags>
   </entry>
@@ -1015,8 +1015,8 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>base64</tag>
         <tag>Java</tag>
+        <tag>base64</tag>
         <tag>Md5</tag>
       </tags>
   </entry>

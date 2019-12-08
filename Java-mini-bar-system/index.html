@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://esyou.net').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="项目已经上传到了github，地址为：https:&#x2F;&#x2F;github.com&#x2F;king2088&#x2F;JavaMiniBarCMS 请注意，有任何问题请留言，有改进的意见请留言，有能力修改代码和完善功能的请直接Email联系博主，联系email请查看About me页面 小型酒吧在线管理系统MinibarCMS是使用Java MVC模式 + Mysql数据库开发的一个简单的文章管理系统，代码简单，数据库也">
+<meta name="keywords" content="JavaScript,flutter,移动端,APP">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小型酒吧在线管理系统MINIBARCMS">
+<meta property="og:url" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index.html">
+<meta property="og:site_name" content="ESYOU">
+<meta property="og:description" content="项目已经上传到了github，地址为：https:&#x2F;&#x2F;github.com&#x2F;king2088&#x2F;JavaMiniBarCMS 请注意，有任何问题请留言，有改进的意见请留言，有能力修改代码和完善功能的请直接Email联系博主，联系email请查看About me页面 小型酒吧在线管理系统MinibarCMS是使用Java MVC模式 + Mysql数据库开发的一个简单的文章管理系统，代码简单，数据库也">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;2016-09-05T08-03-14.368Z.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;2016-09-05T08-03-52.063Z.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905160426.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905160501.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905160522.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905160618.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905160636.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905161408.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905163637.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905170230.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;20160905171539.jpg">
+<meta property="og:updated_time" content="2019-12-08T06:04:49.658Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;esyou.net&#x2F;Java-mini-bar-system&#x2F;index&#x2F;2016-09-05T08-03-14.368Z.png">
+
+<link rel="canonical" href="http://esyou.net/Java-mini-bar-system/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: false
+  };
+</script>
+
+  <title>小型酒吧在线管理系统MINIBARCMS | ESYOU
+  </title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ESYOU</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Notes for a front-end developer, esyou.net</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-minibar">
+
+    <a href="/Java-mini-bar-system" rel="section"><i class="fa fa-fw fa-cogs"></i>MiniBar</a>
+
+  </li>
+        <li class="menu-item menu-item-jseditor">
+
+    <a href="/JSEditor" rel="section"><i class="fa fa-fw fa-android"></i>JSEditor</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/baidusitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">小型酒吧在线管理系统MINIBARCMS
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p>项目已经上传到了github，地址为：<a href="https://github.com/king2088/JavaMiniBarCMS" target="_blank" rel="noopener">https://github.com/king2088/JavaMiniBarCMS</a></p>
+<p>请注意，有任何问题请留言，有改进的意见请留言，有能力修改代码和完善功能的请直接Email联系博主，联系email请查看About me页面</p>
+<p>小型酒吧在线管理系统MinibarCMS是使用Java MVC模式 + Mysql数据库开发的一个简单的文章管理系统，代码简单，数据库也非常mini，特别适合初学者研究与学习！</p>
+<h2 id="2010年V1版本"><a href="#2010年V1版本" class="headerlink" title="2010年V1版本"></a>2010年V1版本</h2><p>V1版本已经基本完善了全部功能，但是并未实现ajax，前端DIV+CSS，仅仅只是为了实现功能而开发的一个java MVC + Mysql的一个简单的文章管理系统。<br>目前本站不提供V1版本的下载，如需V1版的童鞋，请自己百度搜索“小型酒吧在线管理系统”，首页预览图如下：</p>
+
+<h2 id="2016年V2版本"><a href="#2016年V2版本" class="headerlink" title="2016年V2版本"></a>2016年V2版本</h2><p>V2版本中对前端进行了重构，一个全新的平面化设计的前端，更新内容如下：<br>1、增加14个Sevelet来处理相关数据，减少了多余的JSP页面<br>2、FCKediter更改为ueditor<br>3、前端使用JQ+JQ UI的方式重新布局和实现相关功能<br>4、登陆增加了Ajax查询用户名是否正确<br>5、注册页面增加了Ajax查询用户名是否存在，验证码同样使用了Ajax的方式直接在注册页面进行验证，无需跳转后再验证，提高了用户体验度<br>6、所有表单提交都增加了实时验证功能<br>7、所有页面都进行了权限设置，游客无法访问被限制的页面<br>8、后台登陆，进行了严格的权限分配，不是管理员的用户无法登陆，在V1.0版本中，任意用户可以随意登陆后台<br>9、增加了Json数据，可以通过Jsonp的方式调用和读取相关Json数据<br>10、优化了SEO功能<br>11、减小了整个网站的体积<br>12、增加了FontAwesome字体图标<br>13、优化了Javamail无法发送邮件及发送失败的问题<br>14、增加7天自动登陆功能，使用cookie的形式实现7天内自动登录<br>15、增加了DB.properties，配置Mysql数据库链接地址、用户名、密码，更加人性化，链接数据库只需修改DB.properties中的相关信息即可，无需修改源码。<br>新增功能图片预览：<br><img src="./index/2016-09-05T08-03-14.368Z.png" alt=""><br><img src="./index/2016-09-05T08-03-52.063Z.jpg" alt="小型酒吧在线管理系统登录ajax查询用户名是否存在"><br><img src="./index/20160905160426.jpg" alt="小型酒吧在线管理系统用户中心下拉菜单"><br><img src="./index/20160905160501.jpg" alt="小型酒吧在线管理系统ueditor"><br><img src="./index/20160905160522.jpg" alt="小型酒吧在线管理系统购物历史"><br><img src="./index/20160905160618.jpg" alt="小型酒吧在线管理系统修改密码验证"><br><img src="./index/20160905160636.jpg" alt="小型酒吧在线管理系统推荐音乐页面"><br><img src="./index/20160905161408.jpg" alt="小型酒吧在线管理系统预订/付款弹出框"><br><img src="./index/20160905163637.jpg" alt="小型酒吧在线管理系统注册页面ajax验证"><br><img src="./index/20160905170230.jpg" alt="小型酒吧在线管理系统找回密码接收到的邮件"><br><img src="./index/20160905171539.jpg" alt="小型酒吧在线管理系统新增的14个sevelet"></p>
+<h2 id="使用注意事项"><a href="#使用注意事项" class="headerlink" title="使用注意事项"></a>使用注意事项</h2><p>1、在使用本系统前，如果你对Mysql了解不多，或者没有Mysql数据库基础，个人建议自行搭建JavaWeb环境，安装Java JDK，Tomcat，Mysql这三款软件，安装好了以后将下载的V2版系统放到Tomcat目录下的webapps/ROOT文件夹下，你也可以自己设置虚拟目录（不会的童鞋请自己百度），直接输入xxxxx/bar/install.jsp文件即可进行安装（install.jsp也必须是自己安装的Mysql才可以使用，在CMD中输入mysql，必须可用）。（此步必须是自己搭建的服务器软件）<br>如果是使用xampp等集成服务器软件，建议自己创建数据库并进行.sql文件导入即可。<br>2、网站配置<br>打开网站目录下的WEB-INF目录，找到DB.properties文件，即可看到如下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#配置文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#mysql URL:jdbc:mysql:&#x2F;&#x2F;数据库IP:端口&#x2F;数据库名称，不能带有“?&#x2F;*&amp;”等字符</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Mysql_url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;bar</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">#mysql用户名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Mysql_root&#x3D;root</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">#mysql密码</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">Mysql_password&#x3D;123456</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">#mysql的bin路径，为了能够正常备份恢复Mysql数据库，请正确填写Mysql的Bin目录（备份恢复Mysql数据库仅为本地测试而设计）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">#如果Mysql是完整安装在计算机上的就不必设置此项，如果是使用集成环境的比如XAMPP则需要设置</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">#Mysql_Binpath&#x3D;G:XAMPPmysqlbin</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">Mysql_Binpath&#x3D;</span></pre></td></tr></table></figure>
+<p>必须注意的是jdbc:mysql://localhost:3306/bar中，localhost是mysql的服务器ip地址，bar就是数据库名称。Mysql_Binpath是mysql的bin目录，如果是自行搭建的javaweb服务器，即可不用填写，如果是使用集成服务器软件，请自行填写mysql的bin目录，以便网站后台能够备份恢复数据！</p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2010年V1版本"><span class="nav-number">1.</span> <span class="nav-text">2010年V1版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2016年V2版本"><span class="nav-number">2.</span> <span class="nav-text">2016年V2版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用注意事项"><span class="nav-number">3.</span> <span class="nav-text">使用注意事项</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tony</p>
+  <div class="site-description" itemprop="description">ESYOU--前端开发笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/king2088" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;king2088" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: 'UuAJSR3Eymabh3ElUqbuT3aT-gzGzoHsz',
+      appKey: 'PdJgFSl3EEwJKUn9rYSFxvni',
+      placeholder: "Just go go",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
