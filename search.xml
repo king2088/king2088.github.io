@@ -127,8 +127,8 @@
       <tags>
         <tag>node</tag>
         <tag>乱码</tag>
-        <tag>中文</tag>
         <tag>addons</tag>
+        <tag>中文</tag>
       </tags>
   </entry>
   <entry>
@@ -807,8 +807,8 @@
       </categories>
       <tags>
         <tag>node</tag>
-        <tag>mongodb</tag>
         <tag>express</tag>
+        <tag>mongodb</tag>
       </tags>
   </entry>
   <entry>
@@ -1102,8 +1102,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>Cordova</tag>
         <tag>APP</tag>
+        <tag>Cordova</tag>
         <tag>jquery</tag>
         <tag>WP REST API</tag>
       </tags>
@@ -1125,8 +1125,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>Cordova</tag>
         <tag>APP</tag>
+        <tag>Cordova</tag>
         <tag>开发环境</tag>
       </tags>
   </entry>
@@ -1223,9 +1223,9 @@
         <category>Java</category>
       </categories>
       <tags>
+        <tag>中文</tag>
         <tag>jsp</tag>
         <tag>fck</tag>
-        <tag>中文</tag>
       </tags>
   </entry>
   <entry>
