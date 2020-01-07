@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>如何让Cordova开发的APP保持后台运行不被kill</title>
+    <url>/2020/01/07/%E5%A6%82%E4%BD%95%E8%AE%A9Cordova%E5%BC%80%E5%8F%91%E7%9A%84APP%E4%BF%9D%E6%8C%81%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E4%B8%8D%E8%A2%ABkill/</url>
+    <content><![CDATA[<p>在使用cordova开发APP的时候会发现，在安卓上会出现部分问题，就比如我们想要保持当前Cordova APP的状态，然后去查看其他APP这种简单的APP间的切换（简单说就是当你从Cordova APP切换到微信或者其他程序的时候），就会导致Cordova APP直接被后台kill，在ios上好像没有这样的问题发生。<br>为了防止出现这种问题导致体验性差我们可能需要其他方式对此问题进行解决，经过查阅Cordova官方文档发现，其实Cordova提供了以下一些监听事件</p>
+<img src="/2020/01/07/%E5%A6%82%E4%BD%95%E8%AE%A9Cordova%E5%BC%80%E5%8F%91%E7%9A%84APP%E4%BF%9D%E6%8C%81%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E4%B8%8D%E8%A2%ABkill/20200107153554.png" class="" title="Cordova Event">
+<p>deviceready,resume和pause三个事件就是我们这次的重点了，从字面意思对这三个事件进行理解，可以得知deviceready就是设备准备好了，resume是设备恢复（或者理解成APP恢复），pause就是暂停（APP暂停），在相应的页面中编写以下代码我们可以监听到APP目前的暂停与恢复状态，而由此来判断APP是否处于激活状态。</p>
+<a id="more"></a>
+<h2 id="监听APP状态"><a href="#监听APP状态" class="headerlink" title="监听APP状态"></a>监听APP状态</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"deviceready"</span>, onDeviceReady, <span class="literal">false</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onDeviceReady</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="comment">// 设备初始化完成，进入APP监听状态</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"resume"</span>, onResume, <span class="literal">false</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"pause"</span>, onPause, <span class="literal">false</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onResume</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'-----------APP恢复-----------'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onPause</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'-----------APP暂停-----------'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>编写完成后，可以尝试启动APP，然后再将APP最小化或者切换成其他APP（如返回到桌面，接着再启动另一个APP），你就可以看到调试信息展示的是</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-----------APP暂停-----------</span></pre></td></tr></table></figure>
+
+<h2 id="后台运行插件"><a href="#后台运行插件" class="headerlink" title="后台运行插件"></a>后台运行插件</h2><p>当你再次返回到APP的时候可能你的APP又重启动页开始了，APP并不保持在之前你离开的页面，这就是你的app被后台给kill了，因此我们需要在APP pause的时候让我们的APP进入后台运行，防止后台kill当前APP进程，因此我们需要安装一个叫cordova-plugin-background-mode的插件<br>插件github：<a href="https://github.com/katzer/cordova-plugin-background-mode" target="_blank" rel="noopener">https://github.com/katzer/cordova-plugin-background-mode</a><br>安装插件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cordova plugin add cordova-plugin-background-mode</span></pre></td></tr></table></figure>
+
+<p>安装完成后，把上面的代码修改下，修改成如下即可：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"deviceready"</span>, onDeviceReady, <span class="literal">false</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onDeviceReady</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="comment">// 设备初始化完成，进入APP监听状态</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"resume"</span>, onResume, <span class="literal">false</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"pause"</span>, onPause, <span class="literal">false</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onResume</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'-----------APP恢复-----------'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="comment">// APP恢复的时候检查APP是否处于后台运行，如果处于后台则关闭后台运行</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">if</span>(cordova.plugins.backgroundMode.isEnabled()) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        cordova.plugins.backgroundMode.disable()</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onPause</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'-----------APP暂停-----------'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="comment">// 当APP暂停的时候，开启APP后台运行</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">    cordova.plugins.backgroundMode.enable()</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>现在你再切换APP看看，是不是Cordova APP 已经不会出现重启的问题了？</p>
+<h2 id="ionic中的应用"><a href="#ionic中的应用" class="headerlink" title="ionic中的应用"></a>ionic中的应用</h2><p>在ionic中，ionic通过platfrom封装了这些Cordova事件，如将deviceready封装成了platform.ready()，其他两个也一样大同小异platform.pause、platform.resume</p>
+<h3 id="安装backgroundMode插件"><a href="#安装backgroundMode插件" class="headerlink" title="安装backgroundMode插件"></a>安装backgroundMode插件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ionic cordova plugin add cordova-plugin-background-mode;npm install --save @ionic-native/background-mode@4</span></pre></td></tr></table></figure>
+
+<p>在入口文件中编写如下代码即可</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">platform.ready().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">if</span> (platform.is(<span class="string">'android'</span>)) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        <span class="comment">// 监听APP状态</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">        platform.resume.subscribe(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            <span class="comment">// 当APP激活时，判断是否处于后台运行，如果是则关闭后台运行</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.backgroundMode.isEnabled()) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                backgroundMode.disable()</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            <span class="built_in">console</span>.log(<span class="string">'***********APP resume************'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        platform.pause.subscribe(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            <span class="built_in">console</span>.log(<span class="string">'***********APP pause*************'</span>)</span></pre></td></tr><tr><td class="code"><pre><span class="line">            <span class="comment">// 当APP未激活时，直接进入后台</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">            backgroundMode.enable()</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端开发</category>
+      </categories>
+      <tags>
+        <tag>Cordova</tag>
+        <tag>后台运行</tag>
+        <tag>kill</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>APP开发之在CHROME中进行真机调试</title>
     <url>/2019/12/08/APP%E5%BC%80%E5%8F%91%E4%B9%8B%E5%9C%A8CHROME%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/</url>
     <content><![CDATA[<p>使用cordova或者ionic进行app开发时，在浏览器端总是无法监听到cordova插件的运行效果，我们总是需要将app安装到手机上进行运行查看，但是在手机上我们仅能进行查看运行效果，如果哪里出错了我们并无法发现，也不会报console错误，chrome为我们提供了一个很不错的设备调试工具，通过chrome的设备调试工具，我们可以连接到手机以及模拟器，并进行监听运行状态。<br>如果你使用的是手机进行调试，那么请打开你的usb调试功能，否则chrome无法识别你的设备，我使用的是android逍遥游模拟器，下面就来看看如何进行调试吧！</p>
@@ -156,8 +190,8 @@
       </categories>
       <tags>
         <tag>node</tag>
-        <tag>乱码</tag>
         <tag>中文</tag>
+        <tag>乱码</tag>
         <tag>addons</tag>
       </tags>
   </entry>
@@ -1022,8 +1056,8 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>base64</tag>
+        <tag>Java</tag>
         <tag>Md5</tag>
       </tags>
   </entry>
@@ -1132,8 +1166,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>Cordova</tag>
         <tag>APP</tag>
+        <tag>Cordova</tag>
         <tag>jquery</tag>
         <tag>WP REST API</tag>
       </tags>
@@ -1155,8 +1189,8 @@
         <category>前端开发</category>
       </categories>
       <tags>
-        <tag>Cordova</tag>
         <tag>APP</tag>
+        <tag>Cordova</tag>
         <tag>开发环境</tag>
       </tags>
   </entry>

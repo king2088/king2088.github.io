@@ -220,6 +220,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/%E5%9C%A8ELECTRON%E4%B8%AD%E4%BD%BF%E7%94%A8IONIC2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="ESYOU--前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ESYOU">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E5%9C%A8ELECTRON%E4%B8%AD%E4%BD%BF%E7%94%A8IONIC2/" class="post-title-link" itemprop="url">在ELECTRON中使用IONIC2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 13:07:34 / 修改时间：13:12:48" itemprop="dateCreated datePublished" datetime="2019-12-07T13:07:34+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/07/%E5%9C%A8ELECTRON%E4%B8%AD%E4%BD%BF%E7%94%A8IONIC2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/%E5%9C%A8ELECTRON%E4%B8%AD%E4%BD%BF%E7%94%A8IONIC2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>electron是atom官方的一个跨平台的桌面应用开发框架，具官方介绍说是“ Build cross platform desktop apps with JavaScript, HTML, and CSS”，也就是说可以直接使用，你最喜欢的html+css+js来开发跨平台的桌面应用程序。如果你之前使用过angular以及react之类的JS框架，那么你就可以使用这些框架来制作一个跨平台的桌面应用。下面我们主要是说一下在ionic2中，我们要如何使用electron与ionic2进行通信！<br>由于electron使用的是chrome的V8引擎，也就是可以理解为一个浏览器，因此我们只需要编写想要的前端代码就可以直接运行在electron中了。建议大家边看electron的doc边做开发。因为我也是刚刚开始接触electron，只不过我只是需要从ionic中传递数据到electron中，让其与其他设备进行交互而已，因此我做的只是一个简单的ionic传递数据到electron，其他的我并不深入。因此大家喜欢研究的朋友可以深入研究下electron。</p>
+<h2 id="安装electron"><a href="#安装electron" class="headerlink" title="安装electron"></a>安装electron</h2><p>安装过程可能并不复杂，但是一定要记住要使用淘宝的npm镜像进行安装，因为我翻墙了也无法安装成功，因此建议大家使用cnpm，这个特别快！<br>在nodejs中键入如下命令即可进行安装<br>npm install electron -g</p>
+<p>如果是linux或者mac请使用root或者sudo权限进行全局安装</p>
+<h2 id="使用electron"><a href="#使用electron" class="headerlink" title="使用electron"></a>使用electron</h2><p>其使用方法很简单，安装完成后直接输入electron就可以看到如下提示：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E5%9C%A8ELECTRON%E4%B8%AD%E4%BD%BF%E7%94%A8IONIC2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/%E4%BD%BF%E7%94%A8CSS%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1156,114 +1264,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/Angular2%E6%88%964%E8%8E%B7%E5%8F%96CHECKBOX%E7%9A%84%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="ESYOU--前端开发笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ESYOU">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/07/Angular2%E6%88%964%E8%8E%B7%E5%8F%96CHECKBOX%E7%9A%84%E5%80%BC/" class="post-title-link" itemprop="url">Angular2或4获取CHECKBOX的值</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-07 12:34:00 / 修改时间：12:36:54" itemprop="dateCreated datePublished" datetime="2019-12-07T12:34:00+08:00">2019-12-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">前端开发</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/12/07/Angular2%E6%88%964%E8%8E%B7%E5%8F%96CHECKBOX%E7%9A%84%E5%80%BC/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/Angular2%E6%88%964%E8%8E%B7%E5%8F%96CHECKBOX%E7%9A%84%E5%80%BC/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在一个项目中需要使用到这个功能，看了下官方的文档，说得不是很清楚，使用了formArray，但是没有实现成功。然后谷歌、百度了好久，也没有找到可以真正运行的代码，差点就放弃了。功夫不负有心人，在segmentfault上提问后，得到了相关回答，但是回答中得到了一个外国人博客上的文章，对照着改写了一番，感觉真的就这么实现了，真好，实现得和自己想要的最终结果一模一样。下面就来说说如何进行实现吧！<br>首先说下实现的逻辑思路，通过FormBuilder, FormGroup, FormArray来获取checkbox的选中状态，然后通过这些选中状态再去获得checkbox的值，再将想要的值展示出来即可。<br>1、导入相关功能模块</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; FormBuilder, FormGroup, FormArray &#125; <span class="keyword">from</span> <span class="string">'@angular/forms'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'rxjs/add/operator/map'</span>;</span></pre></td></tr></table></figure>
-<p>2、创建checkbox数据源</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> select = [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"leo"</span>,<span class="string">"selected"</span>:<span class="literal">true</span>,<span class="string">"sex"</span>:<span class="string">"男"</span>&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"Lily"</span>,<span class="string">"selected"</span>:<span class="literal">false</span>,<span class="string">"sex"</span>:<span class="string">"女"</span>&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"Tony"</span>,<span class="string">"selected"</span>:<span class="literal">false</span>,<span class="string">"sex"</span>:<span class="string">"男"</span>&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/07/Angular2%E6%88%964%E8%8E%B7%E5%8F%96CHECKBOX%E7%9A%84%E5%80%BC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1334,7 +1334,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1347,7 +1347,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">103</span>
+        <span class="site-state-item-count">105</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1377,7 +1377,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1386,12 +1386,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">145k</span>
+    <span title="站点总字数">148k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:12</span>
+    <span title="站点阅读时长">2:14</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>

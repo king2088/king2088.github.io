@@ -220,6 +220,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="ESYOU--前端开发笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ESYOU">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/" class="post-title-link" itemprop="url">使用VUE2制作音乐播放器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-07 11:21:26 / 修改时间：11:28:01" itemprop="dateCreated datePublished" datetime="2019-12-07T11:21:26+08:00">2019-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>GIF动图有3M多，如果没有显示出来，请再等等</p>
+<img src="/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/vue-player.gif" class="" title="Vue音乐播放器">
+<p>看到了吧，自己的一点小创意，搞了个猪头上去。</p>
+<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><p>本程序中仅使用了vue的ajax框架vue-resource，未使用到vue-router，因此再安装vue-cli的时候，可以略过vue-router，本程序仅有一个组件，即只有一个vue文件，使用了css预处理语言stylus。使用的json数据为本站相关php代码生成的（仅为了演示），如果你是在本地搭建环境，json也可以写在本地。</p>
+<p>本demo已经使用cordova制作成了安卓的apk文件，如需体验，请点击此处下载<br>源码已经提交到github（记得给我加星哦）：<a href="https://github.com/king2088/vue-tplayer" target="_blank" rel="noopener">https://github.com/king2088/vue-tplayer</a><br>演示地址：<a href="http://www.egtch.com/t_works/tplayer/" target="_blank" rel="noopener">http://www.egtch.com/t_works/tplayer/</a></p>
+<h3 id="生成json的php如下"><a href="#生成json的php如下" class="headerlink" title="生成json的php如下"></a>生成json的php如下</h3><p>代码非常简单，就是定义一串json数据，然后在展现出来：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    header(<span class="string">"Access-Control-Allow-Origin: *"</span>);<span class="comment">//设置跨域允许</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    header(<span class="string">'Content-Type: text/html; charset=utf-8'</span>); <span class="comment">//设置页面编码</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    header(<span class="string">'Content-type: application/json'</span>);<span class="comment">//设置页面为json格式的文档</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    $data =<span class="string">' &#123;"music":[</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "id":"1",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "name": "Apologize",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "singer":"Timbaland Remix",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "img":"http://www.egtch.com/t_works/Vuedata/apologize.jpg",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "url": "http://www.egtch.com/t_works/Vuedata/Apologize (Timbaland Remix).mp3"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "id":"2",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "name": "Hero",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "singer":"Enrique Iglesias",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "img":"http://www.egtch.com/t_works/Vuedata/hero.jpg",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "url": "http://www.egtch.com/t_works/Vuedata/Hero.mp3"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "id":"3",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "name": "I AM YOU",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "singer":"Kim Taylor",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "img":"http://www.egtch.com/t_works/Vuedata/iamyou.jpg",</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="string">          "url": "http://www.egtch.com/t_works/Vuedata/I Am You.mp3"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="string">        &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="string">      ]&#125;'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">echo</span> $data</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="meta">?&gt;</span></span></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/07/%E4%BD%BF%E7%94%A8VUE2%E5%88%B6%E4%BD%9C%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/%E5%A6%82%E4%BD%95%E8%AE%A9MD5%E5%8A%A0%E5%AF%86%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1169,113 +1280,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://esyou.net/2019/12/07/JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="ESYOU--前端开发笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ESYOU">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/07/JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">JSP+FCK编辑器使用说明及中文问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-12-07 09:42:03 / 修改时间：09:51:45" itemprop="dateCreated datePublished" datetime="2019-12-07T09:42:03+08:00">2019-12-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/12/07/JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>2008年，我自己配置了一个JSP+FCK编辑器的实例，没有想到突然疯传于网络，很多朋友都通过网络来寻找配置好的编辑器。时隔两年后，任然有人通过网络与我取得联系，一直到现在，我时不时的会接到一些邮件，主要是索要JSP+FCK配置好的编辑器，也有朋友通过QQ加我，向我索要。说实话，jsp+fck配置好的，目前已经被我删除了，当时我花了不少时间去研究JSP+FCK，主要就是由于FCK编辑器是一款免费并可以自己进行插件开发，其使用也方便，功能超级强大。不过这几年过去了，我一直没有再做java开发了，而是直接转为做SEO、PHP开发，由此我也向大家道歉，我没有一一和及时回复大家的相应问题，那么今天我就在此再次为大家提供有关于JSP+FCK编辑器方面的知识。</p>
-<p>目前FCK官方一直都有java版本FCK，如今FCK早已更名为了CKEditor了，之前的FCK也已经很多年木有更新了，大家要是下载了FCK JAVA版的，里面都会包含着很多实用实例，只需要下载FCK官方的JAVA版本.war文件放到tomcat目录即可运行相应的实例了。</p>
-<p>由于近来FCK官方对FCK JAVA版编辑器的更新感觉是越来越慢了，而目前我所看到最新版的还是2010-01-05的FCK2.6版本。FCK官方也进行了其他编辑器的开发，那就是CKEditor，所以很多朋友去网上搜索FCK编辑器的时候，往往都是只能搜索到CKEditor，所以很难下载到自己想要的FCK官方版，一般的朋友就直接去百度一下随便下载个就完事了。这里我得提醒大家，随意下载的FCK编辑器可能是精简版的，有些东西被删除了，或者你下载到的基本是老版本的，有些java类库也已经使用不是很频繁了。由此我就给大家一个官方下载地址，希望大家都能下载到<a href="http://sourceforge.net/projects/fckeditor/files/FCKeditor.Java/" target="_blank" rel="noopener">http://sourceforge.net/projects/fckeditor/files/FCKeditor.Java/</a> 点击此下载地址后，你可以选择相应的版本进行下载你需要的FCK，如图</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/07/JSP-FCK%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1346,7 +1350,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1359,7 +1363,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">103</span>
+        <span class="site-state-item-count">105</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1389,7 +1393,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1398,12 +1402,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">145k</span>
+    <span title="站点总字数">148k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:12</span>
+    <span title="站点阅读时长">2:14</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>
